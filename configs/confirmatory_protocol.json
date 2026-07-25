@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "protocol_name": "MSTT_RUL XJTU Batch-4/5/6 preregistered external confirmation",
+  "status": "PREDECLARED_PROTOCOL_TO_BE_TIMESTAMPED_BY_V0.1.0_FREEZE",
+  "created_utc": "2026-07-25T00:00:00Z",
+  "prior_exposure": {
+    "development_batches": ["Batch-1", "Batch-2", "Batch-3"],
+    "note": "Batch-2 has been repeatedly analysed and is development evidence, not an untouched external test set."
+  },
+  "external_roles": {
+    "Batch-4": {
+      "role": "primary_cross_condition_external_confirmation",
+      "capacity_observation": "reference capacity measured after every operating cycle",
+      "analysis_scale": "physical operating cycle"
+    },
+    "Batch-5": {
+      "role": "secondary_sparse_observation_protocol_transfer",
+      "capacity_observation": "reference capacity measured intermittently, approximately once per 11 operating cycles after cycle 20",
+      "analysis_scale": "physical operating cycle with causal last-observation-carried-forward model input"
+    },
+    "Batch-6": {
+      "role": "secondary_sparse_observation_protocol_transfer",
+      "capacity_observation": "reference capacity measured approximately every 5 operating cycles",
+      "analysis_scale": "physical operating cycle with causal last-observation-carried-forward model input"
+    }
+  },
+  "task": {
+    "nominal_capacity_Ah": 2.0,
+    "eol_threshold_Ah": 1.6,
+    "cutoffs": [70, 130, 190],
+    "forecast_horizon_cycles": 700,
+    "input_window_cycles": 16,
+    "causal_smoothing_window_cycles": 7,
+    "prediction_clip_fraction_of_q0": [0.4, 1.2],
+    "future_capacity_metric_support": "only genuinely observed reference-capacity points after the cutoff and no later than the first observed EOL upper bound",
+    "sparse_input_fill": "causal last observation carried forward; no future interpolation",
+    "eol_truth": "first observed reference capacity <= 1.6 Ah",
+    "sparse_eol_semantics": "interval censored between the previous reference-capacity observation plus one cycle and the first observed crossing cycle",
+    "no_crossing_semantics": "truth is right censored at the final genuine reference-capacity observation; a forecast without a crossing is prediction-censored at cutoff plus 700 cycles"
+  },
+  "models": [
+    {
+      "id": "mstt_single_scale_K5",
+      "role": "primary_preselected_model",
+      "ablation": "single_scale",
+      "loss_rollout_steps": 5,
+      "common_target_support_horizon": 5
+    },
+    {
+      "id": "mstt_full_K5",
+      "role": "secondary_original_topology",
+      "ablation": "full",
+      "loss_rollout_steps": 5,
+      "common_target_support_horizon": 5
+    },
+    {
+      "id": "mstt_full_K1",
+      "role": "secondary_objective_horizon_control",
+      "ablation": "full",
+      "loss_rollout_steps": 1,
+      "common_target_support_horizon": 5
+    },
+    {
+      "id": "local_linear_trend",
+      "role": "transparent_strong_baseline",
+      "lookback": 12
+    },
+    {
+      "id": "persistence",
+      "role": "transparent_baseline"
+    }
+  ],
+  "training": {
+    "selection_train_batch": 1,
+    "selection_validation_batch": 3,
+    "final_fit_batches": [1, 3],
+    "seeds": [42, 2024, 3407],
+    "batch_size": 64,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "max_epochs": 300,
+    "patience": 30,
+    "amp": false,
+    "scaler_fit": "training cells only; capacity channel restored to physical Ah",
+    "test_selection_prohibited": true,
+    "common_support_gate": "all MSTT arms must have identical cell and target-cycle support before training results are accepted"
+  },
+  "seed_aggregation": {
+    "method": "arithmetic mean of predicted capacity at each forecast cycle",
+    "timing_and_capacity_metrics": "computed from the mean trajectory",
+    "seed_level_results": "retained as secondary reproducibility evidence"
+  },
+  "uncertainty": {
+    "model": "mstt_single_scale_K5",
+    "calibration_cells": "all 16 Batch-1 plus Batch-3 development cells through deterministic four-fold cell-level cross-fitting",
+    "nested_selection": "within each outer fold, select epochs using the remaining Batch-1 cells for fitting and remaining Batch-3 cells for validation, then refit on all remaining cells",
+    "score": "per-cell maximum absolute recursive capacity error over all eligible frozen cutoffs and observed future support",
+    "primary_coverage": 0.8,
+    "secondary_coverage": 0.9,
+    "quantile_rule": "ceil((n+1)*(1-alpha)) order statistic, clipped to n",
+    "test_unit": "physical cell",
+    "claim_limit": "diagnostic simultaneous capacity-trajectory band; not a distribution-free event-time survival interval"
+  },
+  "statistics": {
+    "unit": "physical cell after seed aggregation",
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 20260725,
+    "paired_test": "two-sided Wilcoxon signed-rank",
+    "primary_family": {
+      "batch": "Batch-4",
+      "cutoff": 190,
+      "reference_model": "mstt_single_scale_K5",
+      "comparators": ["mstt_full_K5", "mstt_full_K1", "local_linear_trend"],
+      "metrics": ["future_capacity_RMSE_Ah", "censor_aware_timing_score_cycles"],
+      "multiplicity": "Holm across the six listed comparisons"
+    },
+    "all_other_tests": "secondary or exploratory"
+  },
+  "failure_rules": {
+    "stop_on_archive_hash_mismatch": true,
+    "stop_on_model_or_config_hash_mismatch": true,
+    "stop_on_common_support_failure": true,
+    "stop_if_Batch4_reference_capacity_is_not_observed_each_cycle": true,
+    "right_censored_external_cells": "retain and score with one-sided censor-compatible timing; never drop solely because no fixed 1.6-Ah crossing is observed",
+    "retain_all_parse_failures_and_exclusions": true,
+    "no_post_test_model_or_protocol_changes": true
+  }
+}

@@ -1,0 +1,625 @@
+{
+  "status": "PASS",
+  "release_tag": "v0.1.0-freeze",
+  "external_mat_payload_loaded": false,
+  "archive_audit": {
+    "status": "PASS",
+    "archives_expected": 3,
+    "archives_observed": 3,
+    "mat_entries_expected": 24,
+    "mat_entries_observed": 24,
+    "mat_payload_parsed": false,
+    "checks": {
+      "outer_sha256": true,
+      "7z_integrity": true,
+      "inner_filename_and_size": true
+    },
+    "failures": []
+  },
+  "model_config_sha256": "e93e57e7391ff4934866b4f365c4a760d5b62caebe78f5e2075158cbd0be33c9",
+  "common_support_sha256": "ee7f8c28c873cfd6d718f0ea19ace00a487bf8e2dd3b16cbdf2fd894796884d3",
+  "development_data_sha256": "90516c05c419ac9decbb11934048437b48c7a1ae92f92113598ea802023a0612",
+  "calibration_cells": 16,
+  "calibration_quantiles_Ah": {
+    "coverage_0.80": 0.3142959206263223,
+    "coverage_0.90": 0.6260146055857341
+  },
+  "files": [
+    {
+      "path": "freeze_artifacts/calibration/calibration_cell_scores.csv",
+      "size_bytes": 755,
+      "sha256": "d122fcf9f415ca709ec7c052523d0d0aa23e3001b8687d1c1a8a3df23bd04027"
+    },
+    {
+      "path": "freeze_artifacts/calibration/calibration_predictions.csv",
+      "size_bytes": 868507,
+      "sha256": "7f24acaae840fdb129e3cc91d6a8433c7f96506d9d9269a6cccd8da2968e96a7"
+    },
+    {
+      "path": "freeze_artifacts/calibration/calibration_quantiles.json",
+      "size_bytes": 1260,
+      "sha256": "472c54839fb6481979158e89d7ebd405fd080321fe02ab60a4d0d1e86d6a2cd9"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_2024/audit.json",
+      "size_bytes": 1736,
+      "sha256": "56f6de5bd94b22999c5563ad4dd21d6be39fb3e239ce3fa33802f5f6f9350531"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_2024/epoch_selection.csv",
+      "size_bytes": 4263,
+      "sha256": "41bed0ab707004fa78dd7b9efd71634ae5eff1adece1d08f92d4572194541b1a"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_2024/model.pt",
+      "size_bytes": 311168,
+      "sha256": "0c1aa1b3085cb41c4db513154f5dece014b6551d5579f8b134a1a56a3eb51acf"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_2024/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "a84a0ffda7a8c391af935cef8f885159522a5cbc1a3c23559ebed0a14d901f02"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_2024/training.csv",
+      "size_bytes": 1492,
+      "sha256": "7707c0aa6847da2bb9166b46d12779a48a502cbd090576dfc1f0acc8b0e3b42f"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_3407/audit.json",
+      "size_bytes": 1736,
+      "sha256": "24f664d5cddad76c13bbe0b992926e3e9a4e05f8aa237237ac21a37a551bbdad"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_3407/epoch_selection.csv",
+      "size_bytes": 5612,
+      "sha256": "c4f0e6b2a3158270f5be38852fcff431c349c8b82c42ef070fc82c03203a94e7"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_3407/model.pt",
+      "size_bytes": 311168,
+      "sha256": "da9c00af4abf2f1c422897491580a308a7ed7879f710b73119ffe3cced108791"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_3407/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "a84a0ffda7a8c391af935cef8f885159522a5cbc1a3c23559ebed0a14d901f02"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_3407/training.csv",
+      "size_bytes": 2207,
+      "sha256": "e07c8cc977e4f01ab0e05a273bc7dbb600c4214fc9b3654b10e6780e6f4c317c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_42/audit.json",
+      "size_bytes": 1734,
+      "sha256": "cdbf7df8f253296961c3d90f64d5d1cf57ce181134a888a177c3a89cdee34f17"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_42/epoch_selection.csv",
+      "size_bytes": 4380,
+      "sha256": "e7c1513150905b3a95d05a88eaf8f29c86cd1b6e74eddb9808ac634d8f8f605c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_42/model.pt",
+      "size_bytes": 311168,
+      "sha256": "4d93e24ab5f6affba5fdb7a32d780e8b8600b2e5866c4ac3267612b4bfb71a2f"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_42/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "a84a0ffda7a8c391af935cef8f885159522a5cbc1a3c23559ebed0a14d901f02"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_0/seed_42/training.csv",
+      "size_bytes": 1562,
+      "sha256": "a8007546c609e6eaccd64ec19b3b74c9ca411d7cc315740d71e5b90bf0d441c3"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_2024/audit.json",
+      "size_bytes": 1835,
+      "sha256": "d165c09f8acf6af3bf595a3a6be56ea99925d9469c09d542163f9f9c451a6ec9"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_2024/epoch_selection.csv",
+      "size_bytes": 5462,
+      "sha256": "8d36ff940795dfdb0e897c52245361e59a7261dee3a3cacc554c280fda9b3d08"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_2024/model.pt",
+      "size_bytes": 311168,
+      "sha256": "6589be31539f4744ea0662ec34c042b6e9b6bcd4f993b0978a4cad4e58905f4d"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_2024/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "97c030d32198b0782f7e8739811b72dd0584519feda1e38597855124ef02a42c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_2024/training.csv",
+      "size_bytes": 2129,
+      "sha256": "a27225d5aeec552e5fc66c98fc3f02ef9e9f89caa800d5549e7543bd55c586f3"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_3407/audit.json",
+      "size_bytes": 1835,
+      "sha256": "969daab07c02b1307fd4d3bc592a3a53bc95160bc33be2a60c9a57b095e46c07"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_3407/epoch_selection.csv",
+      "size_bytes": 5622,
+      "sha256": "f844cc463750c6041ffd5f99f5b6823d610e2380be4d1a2d92810ba6e8146989"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_3407/model.pt",
+      "size_bytes": 311168,
+      "sha256": "26515caa7541fa34c652b95f3fff2418a244fdeb1ae6ba6fff6dfc1e4ccb3ed2"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_3407/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "97c030d32198b0782f7e8739811b72dd0584519feda1e38597855124ef02a42c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_3407/training.csv",
+      "size_bytes": 2207,
+      "sha256": "f82834898126659cdafb931121772fd6a7500ec163ed0341256724b725dcc040"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_42/audit.json",
+      "size_bytes": 1834,
+      "sha256": "c7e5e4c09784d037c85fcc5728f5d63e5e605db97af1cf62de68373c4433d028"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_42/epoch_selection.csv",
+      "size_bytes": 3958,
+      "sha256": "2ba4afd0c30fa41c05165cabd0b8d1d2f4495df85e588bcac933671fc00f856c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_42/model.pt",
+      "size_bytes": 311168,
+      "sha256": "3116b416cf0b155aab733cb49ee0ca73bf7fcd90862a1137a82534297a8eb5c8"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_42/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "97c030d32198b0782f7e8739811b72dd0584519feda1e38597855124ef02a42c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_1/seed_42/training.csv",
+      "size_bytes": 1340,
+      "sha256": "ed300870e8e09ea74beef72b6a38da3d9975b885b3d2bb4e6f87ee7af518a469"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_2024/audit.json",
+      "size_bytes": 1835,
+      "sha256": "57c754fe0c3c5e38584233f4006947f79ca7621bbaf6aa34bb78ad218a24267c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_2024/epoch_selection.csv",
+      "size_bytes": 4534,
+      "sha256": "62c1d3685b207d96892ef65afa48a605c9b088350fe26edec97fdaaf5e784597"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_2024/model.pt",
+      "size_bytes": 311168,
+      "sha256": "c85f81aa2ffebd50528f334e2662d2542bb27187c7749b59f43559f53e12bed7"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_2024/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "1b3795c0a496ae3b1169d72a53c9056697f48c1273ecfdc769abee380d4cbcf3"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_2024/training.csv",
+      "size_bytes": 1632,
+      "sha256": "87c9426e40619d01cf73c8ee703a2cec02a80688327e790603d879833ad5bb4f"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_3407/audit.json",
+      "size_bytes": 1834,
+      "sha256": "365729e6debfad8857d20fe47a6810ad4b028768c5f07d640d94c6b32026631a"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_3407/epoch_selection.csv",
+      "size_bytes": 1701,
+      "sha256": "7b9ff5c522ac043d45ad09867c3099bd267996e6a14068b6cb07f686e999cb68"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_3407/model.pt",
+      "size_bytes": 311168,
+      "sha256": "1be4a61a0d4530c76b8c51de35245783bd31026856915e0035881cf00dfa244b"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_3407/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "1b3795c0a496ae3b1169d72a53c9056697f48c1273ecfdc769abee380d4cbcf3"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_3407/training.csv",
+      "size_bytes": 137,
+      "sha256": "d8bc2aae057e8170123d2fe3e8c43f78f05f7f6f177305c62aab7f31eb465f5b"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_42/audit.json",
+      "size_bytes": 1833,
+      "sha256": "ec650d4cd75d266d6d11977bf69a99d02934a31affba1eafa690d0a570352a4f"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_42/epoch_selection.csv",
+      "size_bytes": 3373,
+      "sha256": "4bbc295d28702b776003bc6d5dcbb9b44504a3629a6220c9d2e10e00b2dfb93d"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_42/model.pt",
+      "size_bytes": 311168,
+      "sha256": "8a54608d1f6f031be6d0f2bea421216b0bd9ed3945cf85fb4b7ecc38823e05c3"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_42/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "1b3795c0a496ae3b1169d72a53c9056697f48c1273ecfdc769abee380d4cbcf3"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_2/seed_42/training.csv",
+      "size_bytes": 1031,
+      "sha256": "45f215f301353ed9c1f28ef48c65b977a95bc40cde22768d362aa2e160cfa4ef"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_2024/audit.json",
+      "size_bytes": 1834,
+      "sha256": "59dd72e64009e12307f9824bdc9a9bd4d9c2ddaa92ba0277da115f1c3f3c57e6"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_2024/epoch_selection.csv",
+      "size_bytes": 4488,
+      "sha256": "93389bb98cb0ca9ac4d698de4553e875b7b53d7a739ec8a30f89be2ad53fca88"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_2024/model.pt",
+      "size_bytes": 311168,
+      "sha256": "c873fefe0351eacc813ea815cac3066a313d567382ce38e088e1d1edfa0c126c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_2024/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "618f881a052db9b5a7f4047ca36055b30e821b3e20b18d2ce2099c8b7ea03b9c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_2024/training.csv",
+      "size_bytes": 1611,
+      "sha256": "936317359355be6f001daa20fc5779260092ebc101310e2450be1f98c8969293"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_3407/audit.json",
+      "size_bytes": 1835,
+      "sha256": "220d7ae64a9bc6b1fe0433d5ded1f9918bb401653708a3ee2a9d7a8a347c6e83"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_3407/epoch_selection.csv",
+      "size_bytes": 1699,
+      "sha256": "8a162dc41ff2ebc395980139b93357f1ad8cbf74f29da046243c526975ee917f"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_3407/model.pt",
+      "size_bytes": 311168,
+      "sha256": "2e92daf7f1a54f27180adad4bc12c0015f5bedcd273e38a8db3adfa5f76d73de"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_3407/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "618f881a052db9b5a7f4047ca36055b30e821b3e20b18d2ce2099c8b7ea03b9c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_3407/training.csv",
+      "size_bytes": 140,
+      "sha256": "6451e520bffeff15d864cbc4c8cb165a8ae2d409873efd613ed4063f9e008018"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_42/audit.json",
+      "size_bytes": 1834,
+      "sha256": "621ee3020742d89732126589be1e4ebea306a4ea39f448ff034076fa9d52906a"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_42/epoch_selection.csv",
+      "size_bytes": 4015,
+      "sha256": "1769884635bc98800d22542d111944f055e58cd4fca02f9276ac41911a1146a4"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_42/model.pt",
+      "size_bytes": 311168,
+      "sha256": "45cdc6811519e2080edceb9774fc16f47df22315e5cbc76489b5a2f8d29268e6"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_42/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "618f881a052db9b5a7f4047ca36055b30e821b3e20b18d2ce2099c8b7ea03b9c"
+    },
+    {
+      "path": "freeze_artifacts/calibration/crossfit_models/fold_3/seed_42/training.csv",
+      "size_bytes": 1357,
+      "sha256": "cb687e842ef3454ab17cf7c495020251a791908021f3457b5c3e2df8382403b4"
+    },
+    {
+      "path": "freeze_artifacts/development_audit/frozen_protocol.json",
+      "size_bytes": 1368,
+      "sha256": "48ecc1bafa52bf315f218e81e05649a7607977f246e965170b1421f819d9e1ac"
+    },
+    {
+      "path": "freeze_artifacts/development_audit/preflight_gate.json",
+      "size_bytes": 465,
+      "sha256": "4455497413f4433e6bfedec6eb76462e84c4afd3fe13fbf7b43c7a3fcc884f7b"
+    },
+    {
+      "path": "freeze_artifacts/development_audit/scan_failures.txt",
+      "size_bytes": 123,
+      "sha256": "006446d052d6f9454ce87078f2c102e14a2f78b73cb86b71df741347211c8178"
+    },
+    {
+      "path": "freeze_artifacts/development_audit/xjtu_prepared_csv_audit.csv",
+      "size_bytes": 6824,
+      "sha256": "d14c13cf7f69fb03425b0447f01053e5c2d22e0b60410ef8f7aa28ead9558c33"
+    },
+    {
+      "path": "freeze_artifacts/environment/pip_freeze.txt",
+      "size_bytes": 1044,
+      "sha256": "a5a0bf1d5435d31a560a08fa8042b248d916223ed7547c38f352f5a74cd556dd"
+    },
+    {
+      "path": "freeze_artifacts/environment/runtime.json",
+      "size_bytes": 521,
+      "sha256": "062542c8498a34cbb6fca52893c50ab139f90610c7cda755d9b7451e559f8bec"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/frozen_model_manifest.json",
+      "size_bytes": 25172,
+      "sha256": "f923fc803fcb24f754b9f119dbaf6050a6f1af757b92ff90d8f023609647211e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_2024/epoch_selection.csv",
+      "size_bytes": 1902,
+      "sha256": "ae770955766c6c0b2061b3c94422b179442b1528469598b91dfe2f6d8d0ccaf9"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_2024/final_training.csv",
+      "size_bytes": 237,
+      "sha256": "2a64dbb61b80e458011490d9a15a7e8c78dd0c3ea45f18ed58e4a2d61115cece"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_2024/job_audit.json",
+      "size_bytes": 2476,
+      "sha256": "d109d64ecb1dcfddf48cca3feecc6c573259b3ded0d9542d1296198d9c8d8c4f"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_2024/model.pt",
+      "size_bytes": 345211,
+      "sha256": "f72c5c1fd1862da992671c1579af824fd70181f10bc93b22790b858623a61050"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_2024/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_3407/epoch_selection.csv",
+      "size_bytes": 2020,
+      "sha256": "f4123c0d758140b87aa6b9b03ec853d584c25dcee9cdd17598ed0cb0b8f37892"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_3407/final_training.csv",
+      "size_bytes": 311,
+      "sha256": "8efd66c16789177f914af79506b10d27efaf2a08e9513cf6c654646ffc302d67"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_3407/job_audit.json",
+      "size_bytes": 2477,
+      "sha256": "5c79d38b5c1165f1543a083bce27f695e8f190ad21239ceaca9ae4774345a3f4"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_3407/model.pt",
+      "size_bytes": 345211,
+      "sha256": "14b24a35b41fbfd5a5bfc159266473c4010067948b6493f51e3c7e888603512f"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_3407/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_42/epoch_selection.csv",
+      "size_bytes": 4215,
+      "sha256": "c42b8648ed5c59b5dfc1ee69b1107c66fbdcd1e8dbb6853b670eb28089f4feb7"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_42/final_training.csv",
+      "size_bytes": 1457,
+      "sha256": "11f5ea1db386b8e0441618ad088e917872c1c21072fc352743119c331a8ebf89"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_42/job_audit.json",
+      "size_bytes": 2476,
+      "sha256": "454ed50477ff29aee10af73013a129302435a81d089f42cac0f6dded41adf90f"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_42/model.pt",
+      "size_bytes": 345211,
+      "sha256": "8d668c2630cd36017e77b5696b87e5a4a1645d8b716bf47ba143a8252d196fc8"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K1/seed_42/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_2024/epoch_selection.csv",
+      "size_bytes": 1806,
+      "sha256": "e8fdbaad34bf52fd1580d342fff62b94aabf3c51f157c9ab3d4333b1cd0082af"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_2024/final_training.csv",
+      "size_bytes": 188,
+      "sha256": "6638b5f30d05f967c2e82175136d9d20bdc04d2cb39be1f15ce2d6e84965dc5e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_2024/job_audit.json",
+      "size_bytes": 2477,
+      "sha256": "e9e5da5d52b40c6f4f3cd591c45bbf65d634fbbb3b5f53950e81c389daeeb903"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_2024/model.pt",
+      "size_bytes": 345211,
+      "sha256": "14fcb3ee98fbb5dad04f147eff7b1cf324ccd453ce38f2012b6c68297b2ae6a9"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_2024/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_3407/epoch_selection.csv",
+      "size_bytes": 1733,
+      "sha256": "f0afda97273a61cf3c1d8366bf9b4a5d2b3654b19fcefe8f84c2bda0e67c3e83"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_3407/final_training.csv",
+      "size_bytes": 165,
+      "sha256": "185eb78721f006f680e03b43822dca877c9ac0eff3a934aba5771c9d992a4327"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_3407/job_audit.json",
+      "size_bytes": 2477,
+      "sha256": "1fa709b739ea6b34c0f2699dd6015079db936430eb5a0fcf7ce44dc73f26f397"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_3407/model.pt",
+      "size_bytes": 345211,
+      "sha256": "cdc632ec23381b30054feb212896cf38fcd7ef23a3042d0b025b703afb2b4994"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_3407/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_42/epoch_selection.csv",
+      "size_bytes": 4033,
+      "sha256": "deca387cbc4bb9b4a9e8bc3300ef741d021d653e2803dcf230c31e203a191209"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_42/final_training.csv",
+      "size_bytes": 1390,
+      "sha256": "cf9f606c1900d83aa2e32f86ebcc6ac362d595facc7754c759531a85477de163"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_42/job_audit.json",
+      "size_bytes": 2476,
+      "sha256": "bc78800855d762ffe6f0819c3cb290fbdcef059abe20a1cce742a0a0c260b5c7"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_42/model.pt",
+      "size_bytes": 345211,
+      "sha256": "cd1bdce12133a3d290289c82a6e42dca397cda2d8dd210f4b543bd1e9f43df0e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_full_K5/seed_42/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_2024/epoch_selection.csv",
+      "size_bytes": 3669,
+      "sha256": "18cec55c391353faa6b5921ce6906c3ada0839733c94ed4a608bfb24539b6812"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_2024/final_training.csv",
+      "size_bytes": 1181,
+      "sha256": "96045dfcecf3571aa3b35c77fd24fb05dedb8666df73f182280d3a034954d34b"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_2024/job_audit.json",
+      "size_bytes": 2034,
+      "sha256": "5f746bd3ac1ef2f6539459175f8a5d0991e174f4a8b47425e4c9de9136bfe449"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_2024/model.pt",
+      "size_bytes": 311104,
+      "sha256": "52aedce16dd76185a5716e5b9e3d4a2132daa43eec930b332d5b730f37e2f7e3"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_2024/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_3407/epoch_selection.csv",
+      "size_bytes": 1799,
+      "sha256": "69d77cf6ab01c192c353e723059d106a686684ba8198b40412fc4eb6445775ab"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_3407/final_training.csv",
+      "size_bytes": 190,
+      "sha256": "bd89af6b14ae5633e954fc286e49c368963fd22d7059dc468e892b712af79885"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_3407/job_audit.json",
+      "size_bytes": 2034,
+      "sha256": "b3ec83de0f5976088bd87eb36f610b14e61cc3598e0658f040b1195474ed0c92"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_3407/model.pt",
+      "size_bytes": 311104,
+      "sha256": "e50b0b9f1919085ca7c1ef0fb5fd0076505ab29202e40b77b6acb0b37dffe8de"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_3407/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_42/epoch_selection.csv",
+      "size_bytes": 3185,
+      "sha256": "ce4b1e47574799e2637564a00569842f58666f603b1a699326802271577d1e8d"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_42/final_training.csv",
+      "size_bytes": 918,
+      "sha256": "aa52c55418f49cf3a1925de5b97f85e970219f8bccabe1a2669199b300b9c95e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_42/job_audit.json",
+      "size_bytes": 2032,
+      "sha256": "25a2d1cfbc244042054aae7062d3e9df9ad546203d9e67be138f55738641b580"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_42/model.pt",
+      "size_bytes": 311040,
+      "sha256": "778ba6aebb671f49afed62e5ccbe39e0091e931a999a5e924737dfe2b560e45b"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/models/mstt_single_scale_K5/seed_42/scaler.joblib",
+      "size_bytes": 735,
+      "sha256": "68bbf12e3815937c26ba05b20994a2b85051316ee4ba381a56cf5495f7e72e9e"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/support/common_support_gate.json",
+      "size_bytes": 335,
+      "sha256": "f18eb2b0f2730c6e5b4edf1aa212edf64e8a7c6800a2ad8f07f1ff2b66b14d88"
+    },
+    {
+      "path": "freeze_artifacts/frozen_models/support/training_target_support_all_arms.csv",
+      "size_bytes": 324918,
+      "sha256": "02cf59c8e9dbee3cd11b15b87f8b6295a3445dec731e85fa0983402e123a50e0"
+    },
+    {
+      "path": "freeze_artifacts/inventory/archive_gate.json",
+      "size_bytes": 290,
+      "sha256": "d90ecf19b98a7613b27fafc523eb45cc64d3cb1b4c905163e599509eddbf70fd"
+    },
+    {
+      "path": "freeze_artifacts/inventory/runtime_archive_inventory.csv",
+      "size_bytes": 4023,
+      "sha256": "9b95b7a23ac2fa8401694341d68d90d77f4b48d4d1abd2b7dd903be909c241c0"
+    }
+  ],
+  "next_action": "Commit this exact source tree, publish v0.1.0-freeze, obtain a Zenodo version DOI, then register the receipt before external extraction."
+}

@@ -1,0 +1,55 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Runtime logs and process files
+*.log
+*.pid
+*.tmp
+*.lock
+
+# Temporary backups
+*.bak
+*.swp
+*~
+manager.sh.before_windows_zip_fix
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+
+# Raw and externally supplied datasets
+*.mat
+*.7z
+
+# Generated archives
+*.zip
+*.zip.sha256
+
+# Runtime experiment directories
+development_csv_raw/
+development_prepared/
+frozen_models/
+calibration/
+external_prepared/
+external_results/
+results/
+outputs/
+
+# Generated freeze binaries stay in the release ZIP.
+freeze_artifacts/*
+!freeze_artifacts/FREEZE_READY.json
