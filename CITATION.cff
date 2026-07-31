@@ -1,20 +1,21 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata below."
-title: "MSTT RUL Batch-4/5/6 Confirmatory External Validation"
+title: "MSTT RUL v0.2.0 SOH development and pre-BIT confirmation freeze"
 type: software
 authors:
   - family-names: "Peng"
     given-names: "Xue An"
     email: "pengan400@gmail.com"
     orcid: "https://orcid.org/0009-0004-3553-3488"
-version: "0.1.0"
-date-released: "2026-07-26"
+version: "0.2.0"
+date-released: "2026-07-27"
 repository-code: "https://github.com/pengan400-dot/thesis"
 license: "MIT"
 keywords:
   - "lithium-ion battery"
   - "remaining useful life"
-  - "recursive forecasting"
-  - "Transformer"
+  - "normalized state of health"
   - "external validation"
-  - "conformal calibration"
+  - "HNEI"
+  - "BIT"
+  - "confirmatory protocol"

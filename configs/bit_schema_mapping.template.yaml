@@ -1,0 +1,62 @@
+status: UNRESOLVED_AFTER_STRUCTURE_PREFLIGHT
+dataset:
+  doi: 10.17632/kw34hhw7xg.3
+  version: 3
+  archive_file_name: REPLACE_AFTER_DOWNLOAD
+  archive_sha256: REPLACE_FROM_bit_structural_preflight.json
+
+# Fill these only from field semantics/documentation and the structure report.
+# Do not inspect any model output because no model output should exist yet.
+cell_schema:
+  container_or_member_pattern: REPLACE_FROM_STRUCTURE_REPORT
+  physical_cell_id_field: REPLACE_FROM_STRUCTURE_REPORT
+  cohort_field: REPLACE_FROM_STRUCTURE_REPORT
+  cohort_value_map:
+    fixed_profile: REPLACE_FROM_STRUCTURE_REPORT
+    arbitrary_use: REPLACE_FROM_STRUCTURE_REPORT
+  physical_aging_cycle_field: REPLACE_FROM_STRUCTURE_REPORT
+  capacity_field: REPLACE_FROM_STRUCTURE_REPORT
+  capacity_unit: Ah
+  declared_nominal_capacity_Ah: 2.4
+
+resolved_structure:
+  cell_manifest_csv: REPLACE_WITH_STRUCTURE_ONLY_CELL_MANIFEST
+  actual_total_cells: REPLACE_WITH_INTEGER
+  actual_fixed_profile_cells: REPLACE_WITH_INTEGER
+  actual_arbitrary_use_cells: REPLACE_WITH_INTEGER
+  counts_derived_without_model_output: true
+
+parser:
+  source_file: REPLACE_WITH_FROZEN_BIT_PARSER_SOURCE
+  source_sha256: REPLACE_FROM_LOCAL_SHA256
+  executed_on_capacity_values_before_freeze: false
+  imports_model_code: false
+  generates_model_output: false
+
+landmark:
+  primary_cycle: 190
+  index_semantics: physical_aging_cycle_number
+  minimum_pre_cutoff_physical_cycles: 20
+  minimum_future_valid_soh_observations_for_rmse: 5
+
+normalization:
+  primary: median_first_5_valid
+  formula: SOH_i_t = C_i_t / median(C_i_first_5_valid)
+  eol_threshold_soh: 0.8
+  valid_capacity_range_relative_to_declared_nominal: [0.5, 1.5]
+  bol_median_quality_range_relative_to_declared_nominal: [0.8, 1.2]
+  sensitivity_rules: [first_valid, median_first_3_valid]
+
+future_information:
+  post_cutoff_actual_current_schedule_visible: false
+  post_cutoff_charge_rate_labels_visible: false
+  true_data_termination_visible: false
+  total_lifetime_visible: false
+  future_eol_visible: false
+  future_missingness_pattern_visible: false
+
+approval:
+  mapped_by: REPLACE_WITH_AUTHOR_NAME
+  mapped_utc: REPLACE_WITH_UTC_TIMESTAMP
+  structure_report_sha256: REPLACE_FROM_LOCAL_SHA256
+  model_predictions_generated_before_mapping: false
