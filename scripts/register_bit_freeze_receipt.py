@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Record immutable-registration identifiers before BIT model evaluation."""
+"""Record immutable registration for the v0.2.1 BIT freeze."""
 
 from __future__ import annotations
 
@@ -11,7 +11,6 @@ from pathlib import Path
 import re
 import zipfile
 
-
 COMMIT = re.compile(r"^[0-9a-fA-F]{40}$")
 ZENODO = re.compile(r"^10\.\d{4,9}/zenodo\.\d+$", re.IGNORECASE)
 GITHUB_RELEASE = re.compile(
@@ -22,6 +21,7 @@ OSF = re.compile(
     r"^https://(?:www\.)?osf\.io/[a-z0-9]+/?$",
     re.IGNORECASE,
 )
+EXPECTED_VERSION = "v0.2.1-BIT-structural-feasibility-amendment"
 
 
 def sha256(path: Path) -> str:
@@ -51,10 +51,12 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--evaluation-dir", type=Path)
     args = parser.parse_args()
+
     commit = args.commit.strip()
     github_release = args.github_release.strip()
     osf_registration = args.osf_registration.strip()
     zenodo_doi = normalize_doi(args.zenodo_doi)
+
     if not COMMIT.fullmatch(commit):
         raise ValueError("Commit must be the complete 40-character hash")
     if not GITHUB_RELEASE.fullmatch(github_release):
@@ -69,16 +71,21 @@ def main() -> None:
         raise RuntimeError(
             "BIT evaluation output already exists; registration is too late"
         )
+
     manifest = json.loads(
         args.freeze_manifest.read_text(encoding="utf-8")
     )
     if (
         manifest.get("status") != "PASS"
-        or manifest.get("version") != "v0.2.0-BIT-SOH-freeze"
+        or manifest.get("version") != EXPECTED_VERSION
+        or manifest.get("primary_landmark") != 70
+        or sorted(manifest.get("structurally_unavailable_landmarks", []))
+        != [130, 190]
+        or manifest.get("bit_capacity_opened_before_freeze") is not False
         or manifest.get("bit_model_output_generated_before_freeze") is not False
-        or manifest.get("bit_rmse_computed_before_freeze") is not False
     ):
-        raise RuntimeError("Pre-BIT freeze manifest is invalid")
+        raise RuntimeError("v0.2.1 pre-BIT freeze manifest is invalid")
+
     with zipfile.ZipFile(args.freeze_zip) as archive:
         archived = json.loads(
             archive.read(
@@ -88,10 +95,11 @@ def main() -> None:
         bad = archive.testzip()
     if bad is not None or archived != manifest:
         raise RuntimeError("Freeze ZIP/manifest integrity gate failed")
+
     receipt = {
         "status": "PASS",
         "registered_utc": datetime.now(timezone.utc).isoformat(),
-        "version": "v0.2.0-BIT-SOH-freeze",
+        "version": EXPECTED_VERSION,
         "freeze_zip": args.freeze_zip.name,
         "freeze_zip_sha256": sha256(args.freeze_zip),
         "freeze_manifest_sha256": sha256(args.freeze_manifest),
@@ -99,10 +107,16 @@ def main() -> None:
         "github_release": github_release,
         "osf_registration": osf_registration,
         "zenodo_specific_version_doi": zenodo_doi.lower(),
-        "wording": (
-            "prospectively specified and frozen before any BIT model "
-            "evaluation"
+        "governance_label": (
+            "post-BIT-structure-only, pre-model-evaluation amendment"
         ),
+        "wording": (
+            "immutably frozen before any BIT model evaluation; not an "
+            "untouched confirmation"
+        ),
+        "primary_landmark": 70,
+        "structurally_unavailable_landmarks": [130, 190],
+        "bit_capacity_opened_before_receipt": False,
         "bit_model_output_existed_before_receipt": False,
         "bit_evaluation_unlocked": True,
     }
@@ -111,7 +125,7 @@ def main() -> None:
         json.dumps(receipt, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    print(f"[PASS] BIT freeze receipt: {args.output}")
+    print(f"[PASS] BIT v0.2.1 registration receipt: {args.output}")
 
 
 if __name__ == "__main__":

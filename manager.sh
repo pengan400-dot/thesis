@@ -7,10 +7,13 @@ WORK_ROOT="${MSTT_WORK_ROOT:-/root/workspace}"
 RUN_ROOT="${MSTT_RUN_ROOT:-${WORK_ROOT}/MSTT_RUL_v020_SOH_BIT_run}"
 XJTU_PREPARED_DIR="${XJTU_PREPARED_DIR:-${WORK_ROOT}/MSTT_RUL_Q2_Batch456_confirmatory_20260725/development_prepared}"
 HNEI_ARCHIVE="${HNEI_ARCHIVE:-${SHARED_ROOT}/BatteryLife.zip}"
-BIT_SOURCE="${BIT_SOURCE:-${SHARED_ROOT}/BIT_V3_archive.zip}"
-BIT_SCHEMA_MAPPING="${BIT_SCHEMA_MAPPING:-${RUN_ROOT}/13_bit_schema/bit_schema_mapping.yaml}"
+BIT_SOURCE="${BIT_SOURCE:-${SHARED_ROOT}/kw34hhw7xg-3.zip}"
+BIT_SCHEMA_MAPPING="${BIT_SCHEMA_MAPPING:-${PROJECT_ROOT}/amendments/v0.2.1-BIT-structural-feasibility/configs/bit_schema_mapping_v0.2.1.yaml}"
+BIT_MAPPING_RESOLUTION="${PROJECT_ROOT}/amendments/v0.2.1-BIT-structural-feasibility/AUDIT/CYCLE_MAPPING_PASS_OFFSET20_20260801/bit_cycle_mapping_resolution_v0.2.1.json"
+BIT_MAPPING_RECEIPT="${SHARED_ROOT}/BIT_v0.2.1_offset20_mapping_commit_receipt.txt"
 
 CONFIG="${PROJECT_ROOT}/configs/soh_development_protocol_v0.2.0.json"
+BIT_CONFIG="${PROJECT_ROOT}/configs/soh_development_protocol_v0.2.1_BIT_amendment.json"
 PYTHON="${PROJECT_ROOT}/.venv/bin/python"
 PIPELINE=(env "PYTHONPATH=${PROJECT_ROOT}/src" "${PYTHON}" -m mstt_soh.pipeline)
 CONFORMAL=(env "PYTHONPATH=${PROJECT_ROOT}/src" "${PYTHON}" -m mstt_soh.conformal)
@@ -33,13 +36,15 @@ HNEI_DECISION="${HNEI_DECISION_DIR}/hnei_version_decision.json"
 BIT_PREFLIGHT="${RUN_ROOT}/11_bit_structure_preflight"
 BIT_RECEIPT_DIR="${RUN_ROOT}/12_bit_registration_receipt"
 BIT_RECEIPT="${BIT_RECEIPT_DIR}/receipt.json"
+BIT_V021_VERIFY_DIR="${RUN_ROOT}/16_bit_v021_pre_freeze_verify"
+BIT_V021_VERIFY_RECEIPT="${BIT_V021_VERIFY_DIR}/pre_freeze_verify_receipt.json"
 BIT_EVALUATION="${RUN_ROOT}/14_bit_evaluation_LOCKED"
 
 DEV_FREEZE_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.0_SOH_development_freeze.zip"
 DEV_FREEZE_MANIFEST="${SHARED_ROOT}/MSTT_RUL_v0.2.0_SOH_development_freeze.manifest.json"
 HNEI_RESULT_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.0_SOH_HNEI_exploratory_results.zip"
-BIT_FREEZE_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.0_BIT_SOH_pre_model_evaluation_freeze.zip"
-BIT_FREEZE_MANIFEST="${SHARED_ROOT}/MSTT_RUL_v0.2.0_BIT_SOH_pre_model_evaluation_freeze.manifest.json"
+BIT_FREEZE_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.1_BIT_structural_feasibility_pre_model_evaluation_freeze.zip"
+BIT_FREEZE_MANIFEST="${SHARED_ROOT}/MSTT_RUL_v0.2.1_BIT_structural_feasibility_pre_model_evaluation_freeze.manifest.json"
 
 export MPLCONFIGDIR="${RUN_ROOT}/matplotlib_cache"
 mkdir -p "${MPLCONFIGDIR}" "${SHARED_ROOT}"
@@ -106,6 +111,17 @@ case "${command}" in
       -s "${PROJECT_ROOT}/tests" -v
     "${PYTHON}" "${PROJECT_ROOT}/scripts/capture_environment.py" \
       --output-dir "${ENVIRONMENT}"
+    "${PYTHON}" -m unittest discover \
+      -s "${PROJECT_ROOT}/tests" \
+      -p "test_bit_v021_freeze_contract.py" -v
+    mkdir -p "${BIT_V021_VERIFY_DIR}"
+    "${PYTHON}" "${PROJECT_ROOT}/scripts/verify_bit_v021_pre_freeze.py" \
+      --config "${BIT_CONFIG}" \
+      --schema-mapping "${BIT_SCHEMA_MAPPING}" \
+      --mapping-resolution "${BIT_MAPPING_RESOLUTION}" \
+      --mapping-receipt "${BIT_MAPPING_RECEIPT}" \
+      --project-root "${PROJECT_ROOT}" \
+      --output "${BIT_V021_VERIFY_RECEIPT}"
     echo "[PASS] 合同、语法、模型身份、单元测试和环境记录通过"
     ;;
 
@@ -289,17 +305,24 @@ case "${command}" in
   bit_freeze)
     require_python
     require_hnei_unchanged
+    require_file "${BIT_CONFIG}"
     require_file "${BIT_SCHEMA_MAPPING}"
+    require_file "${BIT_MAPPING_RESOLUTION}"
+    require_file "${BIT_MAPPING_RECEIPT}"
+    require_file "${BIT_V021_VERIFY_RECEIPT}"
     require_file "${DEV_FREEZE_ZIP}"
     require_file "${DEV_FREEZE_MANIFEST}"
     require_file "${BIT_PREFLIGHT}/bit_structural_preflight.json"
     "${PYTHON}" "${PROJECT_ROOT}/scripts/freeze_bit_protocol.py" \
-      --config "${CONFIG}" \
+      --config "${BIT_CONFIG}" \
       --schema-mapping "${BIT_SCHEMA_MAPPING}" \
       --preflight-dir "${BIT_PREFLIGHT}" \
       --development-freeze "${DEV_FREEZE_ZIP}" \
       --development-manifest "${DEV_FREEZE_MANIFEST}" \
       --hnei-decision "${HNEI_DECISION}" \
+      --mapping-resolution "${BIT_MAPPING_RESOLUTION}" \
+      --mapping-receipt "${BIT_MAPPING_RECEIPT}" \
+      --verify-receipt "${BIT_V021_VERIFY_RECEIPT}" \
       --project-root "${PROJECT_ROOT}" \
       --output-zip "${BIT_FREEZE_ZIP}"
     ;;

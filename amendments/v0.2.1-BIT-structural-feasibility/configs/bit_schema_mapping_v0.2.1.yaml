@@ -1,0 +1,86 @@
+status: RESOLVED_V0_2_1_PRE_MODEL_EVALUATION
+dataset:
+  doi: 10.17632/kw34hhw7xg.3
+  version: 3
+  archive_file_name: kw34hhw7xg-3.zip
+  archive_sha256: 9701ff850b8b738f9b15b5e02d1ea6fe2e3630ef704336f19acc918f133b18d7
+
+cell_schema:
+  container_or_member_pattern: "kw34hhw7xg-3/<cohort directory>/#<cell integer>/*.xlsx"
+  worksheet: "记录表"
+  physical_cell_id_field: "member path directory token #<integer>"
+  cohort_field: "member path parent directory"
+  cohort_value_map:
+    fixed_profile: "Cycled with Fixed Current Profiles"
+    arbitrary_use: "Cycled with Arbitrary Uses Profiles"
+  local_cycle_field: "记录表.Cycle_Index"
+  physical_aging_cycle_field: "derived_physical_cycle_v0_2_1_offset20"
+  physical_cycle_mapping:
+    first20_local_1_to_20: "physical 1 to 20"
+    first20_local_21: "excluded terminal workbook bucket"
+    later_formula: "physical_cycle = 20 + local_cycle"
+  capacity_field: "记录表.Capacity(Ah)"
+  current_field: "记录表.Current(A)"
+  capacity_unit: Ah
+  declared_nominal_capacity_Ah: 2.4
+
+resolved_structure:
+  evaluation_manifest_csv: "../AUDIT/CYCLE_MAPPING_PASS_OFFSET20_20260801/bit_cycle_mapping_manifest_v0.2.1.csv"
+  evaluation_manifest_sha256: "34b08a5f401aee9cde564bc49e542768517722b682ee5b927109e8ed5e0fd3b4"
+  workbook_pairing_csv: "../AUDIT/STRUCTURE_MAPPING_EVIDENCE_20260801/cell_boundary_inventory.csv"
+  workbook_pairing_sha256: "fd873e12acbf2039504a8a9f27f6bcade223e609a55292a8373491ee5dc38b43"
+  archive_total_cells: 73
+  archive_fixed_profile_cells: 18
+  archive_arbitrary_use_cells: 55
+  evaluation_included_cells: 72
+  evaluation_included_fixed_profile_cells: 17
+  evaluation_included_arbitrary_use_cells: 55
+  missing_expected_cells: [10, 13, 16, 19]
+  incomplete_and_excluded_cells: [2]
+  counts_derived_without_capacity_or_model_output: true
+
+parser:
+  source_file: "../../../scripts/parse_bit_capacity_v0_2_1.py"
+  source_sha256: "51ef6683a69b7594d5da0e37fc7d4ed24e52a6ab31bef890f0a2aa42c043fdb8"
+  executed_on_capacity_values_before_freeze: false
+  imports_model_code: false
+  generates_model_output: false
+  registration_receipt_required_before_archive_open: true
+  discharge_capacity_rule: "max(Capacity(Ah)) - min(Capacity(Ah)) over negative-current rows within each mapped physical cycle"
+
+landmark:
+  primary_physical_cycle: 70
+  structurally_representable_for_all_included_cells: true
+  structurally_unavailable_cycles: [130, 190]
+  minimum_pre_cutoff_physical_cycles: 20
+  minimum_future_valid_soh_observations_for_rmse: 5
+
+normalization:
+  primary: median_first_5_valid
+  formula: SOH_i_t = C_i_t / median(C_i_first_5_valid)
+  eol_threshold_soh: 0.8
+  valid_capacity_range_relative_to_declared_nominal: [0.5, 1.5]
+  bol_median_quality_range_relative_to_declared_nominal: [0.8, 1.2]
+  sensitivity_rules: [first_valid, median_first_3_valid]
+
+future_information:
+  post_cutoff_actual_current_schedule_visible: false
+  post_cutoff_charge_rate_labels_visible: false
+  true_data_termination_visible: false
+  total_lifetime_visible: false
+  future_eol_visible: false
+  future_missingness_pattern_visible: false
+
+evidence:
+  mapping_governance_label: "post-BIT-structure-only, pre-model-evaluation amendment"
+  mapping_is_governance_choice_not_hidden_ground_truth: true
+  mapping_evidence_commit: "44294e192debaa19df7840658aa5242b787cf658"
+  mapping_resolution_json: "../AUDIT/CYCLE_MAPPING_PASS_OFFSET20_20260801/bit_cycle_mapping_resolution_v0.2.1.json"
+  mapping_resolution_sha256: "43a4091db89e796215b69c09cca86663f934476e84fe417ac9dd3ce8febd555f"
+  mapping_commit_receipt: "/root/shared-storage/BIT_v0.2.1_offset20_mapping_commit_receipt.txt"
+  capacity_read_before_mapping_freeze: false
+  model_predictions_generated_before_mapping_freeze: false
+
+approval:
+  mapping_state: READY_FOR_IMMUTABLE_FREEZE
+  model_predictions_generated_before_mapping: false
