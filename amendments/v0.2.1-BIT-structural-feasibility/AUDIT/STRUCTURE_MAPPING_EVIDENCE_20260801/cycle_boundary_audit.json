@@ -1,0 +1,33 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "created_utc": "2026-08-01T03:26:42.098062+00:00",
+  "archive": "/root/shared-storage/kw34hhw7xg-3.zip",
+  "archive_sha256": "9701ff850b8b738f9b15b5e02d1ea6fe2e3630ef704336f19acc918f133b18d7",
+  "file_inventory": "/root/workspace/MSTT_RUL_v020_SOH_BIT_run/11_bit_structure_preflight/bit_file_inventory.csv",
+  "file_inventory_sha256": "56b89293842615cfe710c338966e731b6fbc15af1b8ef1bcccea7e097f011d81",
+  "workers": 4,
+  "xlsx_members_expected": 145,
+  "xlsx_members_completed": 145,
+  "failures": [],
+  "physical_cells": 73,
+  "mapping_decision_counts": {
+    "boundary_fragment_continuation": 0,
+    "append_after_last_cycle": 0,
+    "unresolved": 72,
+    "incomplete": 1
+  },
+  "resolved_offsets": [],
+  "all_complete_cells_mapping_resolved": false,
+  "cycle70_representable_for_all_resolved_complete_cells": false,
+  "cycle130_representable_for_any_resolved_cell": false,
+  "cycle190_representable_for_any_resolved_cell": false,
+  "allowed_fields": [
+    "Data_Point",
+    "Date_Time",
+    "Cycle_Index"
+  ],
+  "outcome_fields_read": false,
+  "model_code_imported": false,
+  "model_output_generated": false,
+  "next_step": "Review cell_boundary_inventory.csv. Do not freeze or evaluate a model unless the status is PASS_CYCLE70_STRUCTURALLY_RESOLVED and the mapping rule is accepted in a separately registered amendment."
+}
