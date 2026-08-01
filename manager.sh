@@ -18,6 +18,7 @@ PYTHON="${PROJECT_ROOT}/.venv/bin/python"
 PIPELINE=(env "PYTHONPATH=${PROJECT_ROOT}/src" "${PYTHON}" -m mstt_soh.pipeline)
 CONFORMAL=(env "PYTHONPATH=${PROJECT_ROOT}/src" "${PYTHON}" -m mstt_soh.conformal)
 DEV_FREEZER=(env "PYTHONPATH=${PROJECT_ROOT}/src" "${PYTHON}" -m mstt_soh.development_freeze)
+BIT_EVALUATOR=(env "PYTHONPATH=${PROJECT_ROOT}/src" "${PYTHON}" "${PROJECT_ROOT}/scripts/bit_v021_evaluator.py")
 
 ENVIRONMENT="${RUN_ROOT}/00_environment"
 DEVELOPMENT="${RUN_ROOT}/01_xjtu_soh_development"
@@ -39,12 +40,27 @@ BIT_RECEIPT="${BIT_RECEIPT_DIR}/receipt.json"
 BIT_V021_VERIFY_DIR="${RUN_ROOT}/16_bit_v021_pre_freeze_verify"
 BIT_V021_VERIFY_RECEIPT="${BIT_V021_VERIFY_DIR}/pre_freeze_verify_receipt.json"
 BIT_EVALUATION="${RUN_ROOT}/14_bit_evaluation_LOCKED"
+BIT_EVALUATOR_VERIFY_DIR="${RUN_ROOT}/17_bit_v021_evaluator_source_verify"
+BIT_EVALUATOR_VERIFY_RECEIPT="${BIT_EVALUATOR_VERIFY_DIR}/evaluator_source_verify_receipt.json"
+BIT_EVALUATOR_SOURCE_DIR="${RUN_ROOT}/18_bit_v021_evaluator_source_freeze"
+BIT_EVALUATOR_SOURCE_RECEIPT="${BIT_EVALUATOR_SOURCE_DIR}/evaluator_source_freeze_receipt.json"
+BIT_RAW_DIR="${BIT_EVALUATION}/00_raw_capacity"
+BIT_RAW_CAPACITY="${BIT_RAW_DIR}/bit_raw_capacity_v0.2.1.csv"
+BIT_PREPARED="${BIT_EVALUATION}/01_prepared"
+BIT_PREDICTIONS="${BIT_EVALUATION}/02_evaluation"
+BIT_AGGREGATE="${BIT_EVALUATION}/03_aggregate"
+BIT_PACK_STAGING="${RUN_ROOT}/15_bit_result_pack_staging"
+BIT_PAIRING_MANIFEST="${PROJECT_ROOT}/amendments/v0.2.1-BIT-structural-feasibility/AUDIT/STRUCTURE_MAPPING_EVIDENCE_20260801/cell_boundary_inventory.csv"
+BIT_MAPPING_MANIFEST="${PROJECT_ROOT}/amendments/v0.2.1-BIT-structural-feasibility/AUDIT/CYCLE_MAPPING_PASS_OFFSET20_20260801/bit_cycle_mapping_manifest_v0.2.1.csv"
 
 DEV_FREEZE_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.0_SOH_development_freeze.zip"
 DEV_FREEZE_MANIFEST="${SHARED_ROOT}/MSTT_RUL_v0.2.0_SOH_development_freeze.manifest.json"
 HNEI_RESULT_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.0_SOH_HNEI_exploratory_results.zip"
 BIT_FREEZE_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.1_BIT_structural_feasibility_pre_model_evaluation_freeze.zip"
 BIT_FREEZE_MANIFEST="${SHARED_ROOT}/MSTT_RUL_v0.2.1_BIT_structural_feasibility_pre_model_evaluation_freeze.manifest.json"
+BIT_EVALUATOR_SOURCE_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.1_BIT_evaluator_source_pre_capacity_freeze.zip"
+BIT_EVALUATOR_SOURCE_MANIFEST="${SHARED_ROOT}/MSTT_RUL_v0.2.1_BIT_evaluator_source_pre_capacity_freeze.manifest.json"
+BIT_RESULT_ZIP="${SHARED_ROOT}/MSTT_RUL_v0.2.1_BIT_confirmatory_results.zip"
 
 export MPLCONFIGDIR="${RUN_ROOT}/matplotlib_cache"
 mkdir -p "${MPLCONFIGDIR}" "${SHARED_ROOT}"
@@ -353,6 +369,135 @@ case "${command}" in
     echo "[PASS] BIT 注册收据已生成。本代码包仍不含 BIT 模型评估命令。"
     ;;
 
+
+  bit_eval_verify)
+    require_python
+    require_file "${BIT_RECEIPT}"
+    require_file "${BIT_FREEZE_MANIFEST}"
+    "${PYTHON}" -m py_compile \
+      "${PROJECT_ROOT}/scripts/bit_v021_evaluator.py" \
+      "${PROJECT_ROOT}/scripts/verify_bit_evaluator_source_v0_2_1.py" \
+      "${PROJECT_ROOT}/scripts/freeze_bit_evaluator_source_v0_2_1.py" \
+      "${PROJECT_ROOT}/tests/test_bit_v021_evaluator_contract.py"
+    PYTHONPATH="${PROJECT_ROOT}/src" \
+      "${PYTHON}" -m unittest discover \
+      -s "${PROJECT_ROOT}/tests" \
+      -p "test_bit_v021_evaluator_contract.py" -v
+    mkdir -p "${BIT_EVALUATOR_VERIFY_DIR}"
+    "${PYTHON}" "${PROJECT_ROOT}/scripts/verify_bit_evaluator_source_v0_2_1.py" \
+      --project-root "${PROJECT_ROOT}" \
+      --registration-receipt "${BIT_RECEIPT}" \
+      --freeze-manifest "${BIT_FREEZE_MANIFEST}" \
+      --evaluation-dir "${BIT_EVALUATION}" \
+      --output "${BIT_EVALUATOR_VERIFY_RECEIPT}"
+    ;;
+
+  bit_eval_source_freeze)
+    require_python
+    require_file "${BIT_EVALUATOR_VERIFY_RECEIPT}"
+    require_file "${BIT_RECEIPT}"
+    require_file "${BIT_FREEZE_MANIFEST}"
+    mkdir -p "${BIT_EVALUATOR_SOURCE_DIR}"
+    "${PYTHON}" "${PROJECT_ROOT}/scripts/freeze_bit_evaluator_source_v0_2_1.py" \
+      --project-root "${PROJECT_ROOT}" \
+      --verify-receipt "${BIT_EVALUATOR_VERIFY_RECEIPT}" \
+      --registration-receipt "${BIT_RECEIPT}" \
+      --freeze-manifest "${BIT_FREEZE_MANIFEST}" \
+      --evaluation-dir "${BIT_EVALUATION}" \
+      --output-zip "${BIT_EVALUATOR_SOURCE_ZIP}" \
+      --output-manifest "${BIT_EVALUATOR_SOURCE_MANIFEST}" \
+      --output-receipt "${BIT_EVALUATOR_SOURCE_RECEIPT}"
+    ;;
+
+  bit_parse)
+    require_python
+    require_file "${BIT_EVALUATOR_SOURCE_RECEIPT}"
+    require_file "${BIT_SOURCE}"
+    require_file "${BIT_PAIRING_MANIFEST}"
+    require_file "${BIT_MAPPING_MANIFEST}"
+    "${BIT_EVALUATOR[@]}" parse \
+      --project-root "${PROJECT_ROOT}" \
+      --bit-config "${BIT_CONFIG}" \
+      --development-config "${CONFIG}" \
+      --registration-receipt "${BIT_RECEIPT}" \
+      --source-receipt "${BIT_EVALUATOR_SOURCE_RECEIPT}" \
+      --source-freeze-zip "${BIT_EVALUATOR_SOURCE_ZIP}" \
+      --freeze-manifest "${BIT_FREEZE_MANIFEST}" \
+      --archive "${BIT_SOURCE}" \
+      --parser "${PROJECT_ROOT}/scripts/parse_bit_capacity_v0_2_1.py" \
+      --pairing-manifest "${BIT_PAIRING_MANIFEST}" \
+      --mapping-manifest "${BIT_MAPPING_MANIFEST}" \
+      --output "${BIT_RAW_CAPACITY}"
+    ;;
+
+  bit_prepare)
+    require_python
+    require_file "${BIT_RAW_CAPACITY}"
+    "${BIT_EVALUATOR[@]}" prepare \
+      --project-root "${PROJECT_ROOT}" \
+      --bit-config "${BIT_CONFIG}" \
+      --development-config "${CONFIG}" \
+      --registration-receipt "${BIT_RECEIPT}" \
+      --source-receipt "${BIT_EVALUATOR_SOURCE_RECEIPT}" \
+      --source-freeze-zip "${BIT_EVALUATOR_SOURCE_ZIP}" \
+      --freeze-manifest "${BIT_FREEZE_MANIFEST}" \
+      --raw-capacity-csv "${BIT_RAW_CAPACITY}" \
+      --output "${BIT_PREPARED}"
+    ;;
+
+  bit_evaluate)
+    require_python
+    require_file "${BIT_PREPARED}/preparation_audit.json"
+    require_file "${MODELS}/frozen_model_manifest.json"
+    "${BIT_EVALUATOR[@]}" evaluate \
+      --project-root "${PROJECT_ROOT}" \
+      --bit-config "${BIT_CONFIG}" \
+      --development-config "${CONFIG}" \
+      --registration-receipt "${BIT_RECEIPT}" \
+      --source-receipt "${BIT_EVALUATOR_SOURCE_RECEIPT}" \
+      --source-freeze-zip "${BIT_EVALUATOR_SOURCE_ZIP}" \
+      --freeze-manifest "${BIT_FREEZE_MANIFEST}" \
+      --prepared "${BIT_PREPARED}" \
+      --models "${MODELS}" \
+      --output "${BIT_PREDICTIONS}" \
+      --device auto
+    ;;
+
+  bit_aggregate)
+    require_python
+    require_file "${BIT_PREDICTIONS}/evaluation_audit.json"
+    "${BIT_EVALUATOR[@]}" aggregate \
+      --project-root "${PROJECT_ROOT}" \
+      --bit-config "${BIT_CONFIG}" \
+      --development-config "${CONFIG}" \
+      --registration-receipt "${BIT_RECEIPT}" \
+      --source-receipt "${BIT_EVALUATOR_SOURCE_RECEIPT}" \
+      --source-freeze-zip "${BIT_EVALUATOR_SOURCE_ZIP}" \
+      --freeze-manifest "${BIT_FREEZE_MANIFEST}" \
+      --prepared "${BIT_PREPARED}" \
+      --evaluation "${BIT_PREDICTIONS}" \
+      --output "${BIT_AGGREGATE}"
+    ;;
+
+  bit_pack_results)
+    require_python
+    require_file "${BIT_AGGREGATE}/aggregate_audit.json"
+    "${BIT_EVALUATOR[@]}" pack \
+      --project-root "${PROJECT_ROOT}" \
+      --bit-config "${BIT_CONFIG}" \
+      --development-config "${CONFIG}" \
+      --registration-receipt "${BIT_RECEIPT}" \
+      --source-receipt "${BIT_EVALUATOR_SOURCE_RECEIPT}" \
+      --source-freeze-zip "${BIT_EVALUATOR_SOURCE_ZIP}" \
+      --freeze-manifest "${BIT_FREEZE_MANIFEST}" \
+      --prepared "${BIT_PREPARED}" \
+      --evaluation "${BIT_PREDICTIONS}" \
+      --aggregate "${BIT_AGGREGATE}" \
+      --models "${MODELS}" \
+      --package-root "${BIT_PACK_STAGING}" \
+      --output-zip "${BIT_RESULT_ZIP}"
+    ;;
+
   status)
     for item in \
       "${ENVIRONMENT}/runtime_environment.json" \
@@ -371,7 +516,14 @@ case "${command}" in
       "${HNEI_DECISION}" \
       "${BIT_PREFLIGHT}/bit_structural_preflight.json" \
       "${BIT_FREEZE_ZIP}" \
-      "${BIT_RECEIPT}"
+      "${BIT_RECEIPT}" \
+      "${BIT_EVALUATOR_VERIFY_RECEIPT}" \
+      "${BIT_EVALUATOR_SOURCE_ZIP}" \
+      "${BIT_EVALUATOR_SOURCE_RECEIPT}" \
+      "${BIT_PREPARED}/preparation_audit.json" \
+      "${BIT_PREDICTIONS}/evaluation_audit.json" \
+      "${BIT_AGGREGATE}/aggregate_audit.json" \
+      "${BIT_RESULT_ZIP}"
     do
       if [[ -e "${item}" ]]; then
         echo "[YES] ${item}"
