@@ -1,0 +1,32 @@
+{
+  "status": "STRUCTURE_ONLY_PASS",
+  "dataset_doi": "10.17632/kw34hhw7xg.3",
+  "dataset_version": 3,
+  "source": "/root/shared-storage/kw34hhw7xg-3.zip",
+  "source_sha256": "9701ff850b8b738f9b15b5e02d1ea6fe2e3630ef704336f19acc918f133b18d7",
+  "members": 147,
+  "schema_recognized_members": 145,
+  "cohort_hint_counts": {
+    "arbitrary_use": 110,
+    "fixed_profile": 35
+  },
+  "official_expected_counts": {
+    "total": 77,
+    "fixed_profile": 22,
+    "arbitrary_use": 55
+  },
+  "actual_cell_counts_frozen": false,
+  "physical_cycle_field_frozen": false,
+  "capacity_unit_frozen": false,
+  "structural_fields_read": true,
+  "capacity_normalized": false,
+  "numeric_capacity_values_summarized": false,
+  "soh_computed": false,
+  "eol_computed": false,
+  "model_imported": false,
+  "model_output_generated": false,
+  "rmse_computed": false,
+  "model_error_plot_generated": false,
+  "failures": [],
+  "next_step": "Resolve one physical-cycle field, one Ah capacity field, one physical-cell ID, and one fixed/arbitrary cohort field in bit_schema_mapping.yaml; do not run a model."
+}

@@ -1,0 +1,67 @@
+status: UNRESOLVED_LANDMARK_190_STRUCTURALLY_INFEASIBLE
+dataset:
+  doi: 10.17632/kw34hhw7xg.3
+  version: 3
+  archive_file_name: kw34hhw7xg-3.zip
+  archive_sha256: 9701ff850b8b738f9b15b5e02d1ea6fe2e3630ef704336f19acc918f133b18d7
+
+cell_schema:
+  container_or_member_pattern: "kw34hhw7xg-3/<cohort directory>/#<cell integer>/*.xlsx"
+  worksheet: "记录表"
+  physical_cell_id_field: "member path directory token #<integer>"
+  cohort_field: "member path parent directory"
+  cohort_value_map:
+    fixed_profile: "Cycled with Fixed Current Profiles"
+    arbitrary_use: "Cycled with Arbitrary Uses Profiles"
+  local_cycle_field: "记录表.Cycle_Index"
+  physical_aging_cycle_field: "UNRESOLVED_AFTER_STRUCTURE_PREFLIGHT"
+  capacity_field: "记录表.Capacity(Ah)"
+  current_field: "记录表.Current(A)"
+  capacity_unit: Ah
+  declared_nominal_capacity_Ah: 2.4
+
+resolved_structure:
+  cell_manifest_csv: "../manifests/bit_structure_cell_manifest.csv"
+  actual_total_cells: 73
+  actual_fixed_profile_cells: 18
+  actual_arbitrary_use_cells: 55
+  structurally_complete_cells: 72
+  missing_expected_cells: [10, 13, 16, 19]
+  incomplete_cells: [2]
+  counts_derived_without_model_output: true
+
+parser:
+  source_file: "UNRESOLVED_UNTIL_STRUCTURAL_AMENDMENT"
+  source_sha256: "UNRESOLVED_UNTIL_STRUCTURAL_AMENDMENT"
+  executed_on_capacity_values_before_freeze: false
+  imports_model_code: false
+  generates_model_output: false
+
+landmark:
+  frozen_v0_2_0_primary_cycle: 190
+  structurally_representable_under_supplied_archive: false
+  candidate_amended_primary_cycle_from_prespecified_set: 70
+  index_semantics: physical_aging_cycle_number
+  minimum_pre_cutoff_physical_cycles: 20
+  minimum_future_valid_soh_observations_for_rmse: 5
+
+normalization:
+  primary: median_first_5_valid
+  formula: SOH_i_t = C_i_t / median(C_i_first_5_valid)
+  eol_threshold_soh: 0.8
+  valid_capacity_range_relative_to_declared_nominal: [0.5, 1.5]
+  bol_median_quality_range_relative_to_declared_nominal: [0.8, 1.2]
+  sensitivity_rules: [first_valid, median_first_3_valid]
+
+future_information:
+  post_cutoff_actual_current_schedule_visible: false
+  post_cutoff_charge_rate_labels_visible: false
+  true_data_termination_visible: false
+  total_lifetime_visible: false
+  future_eol_visible: false
+  future_missingness_pattern_visible: false
+
+approval:
+  mapping_state: BLOCKED
+  structure_report_sha256: a5d6f6a8320c0dd18bf7ea99c9ed9d818ac7f95c0efe7916412ad91b38d21e6a
+  model_predictions_generated_before_mapping: false

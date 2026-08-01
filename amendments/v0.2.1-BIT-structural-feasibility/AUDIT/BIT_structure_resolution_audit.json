@@ -1,0 +1,89 @@
+{
+  "status": "BLOCKED_BEFORE_BIT_PROTOCOL_FREEZE",
+  "reason": "The frozen primary physical-cycle-190 landmark is not structurally representable in the supplied archive inventory.",
+  "created_utc": "2026-08-01T02:18:00Z",
+  "input_artifact": {
+    "file": "BIT_structure_preflight_for_schema_mapping.zip",
+    "sha256": "15c62dceb4f9c9123b787ea481992a55ae0bfbcd5d92fc3de7be2aba86256622",
+    "sha256_verified": true
+  },
+  "bit_archive": {
+    "dataset_doi": "10.17632/kw34hhw7xg.3",
+    "dataset_version": 3,
+    "archive_sha256": "9701ff850b8b738f9b15b5e02d1ea6fe2e3630ef704336f19acc918f133b18d7",
+    "members": 147,
+    "schema_recognized_members": 145
+  },
+  "official_metadata_counts": {
+    "total": 77,
+    "fixed_profile": 22,
+    "arbitrary_use": 55
+  },
+  "supplied_archive_counts": {
+    "physical_cell_directories": 73,
+    "arbitrary_use": 55,
+    "fixed_profile": 18,
+    "structurally_complete_two_file_cells": 72,
+    "incomplete_cells": [
+      2
+    ],
+    "missing_expected_cell_numbers": [
+      10,
+      13,
+      16,
+      19
+    ]
+  },
+  "resolved_safe_schema": {
+    "sheet": "记录表",
+    "physical_cell_id": "directory token #<integer>",
+    "cohort": "parent directory name",
+    "cohort_value_map": {
+      "Cycled with Arbitrary Uses Profiles": "arbitrary_use",
+      "Cycled with Fixed Current Profiles": "fixed_profile"
+    },
+    "local_cycle_field": "记录表.Cycle_Index",
+    "capacity_field": "记录表.Capacity(Ah)",
+    "capacity_unit": "Ah",
+    "current_field": "记录表.Current(A)",
+    "voltage_field": "记录表.Voltage(V)",
+    "temperature_field": "记录表.Temperature(℃)",
+    "date_time_field": "记录表.Date_Time",
+    "declared_nominal_capacity_Ah": 2.4
+  },
+  "cycle_structure": {
+    "unique_local_cycle_ranges": [
+      {
+        "numeric_min": 1.0,
+        "numeric_max": 21.0
+      },
+      {
+        "numeric_min": 1.0,
+        "numeric_max": 101.0
+      }
+    ],
+    "first20_files": 73,
+    "later_files": 72,
+    "all_xlsx_physical_cycle_190_flags_false": true,
+    "largest_additive_local_cycle_upper_bound_among_complete_cells": 122.0,
+    "interpretation": "The report contains local ranges 1–21 for first20 workbooks and 1–101 for later workbooks. Even the generous additive upper bound is 122, below 190."
+  },
+  "field_candidate_counts": {
+    "other": 873,
+    "current_or_rate_candidate": 145,
+    "capacity_candidate": 145,
+    "physical_cycle_candidate": 145
+  },
+  "prohibited_next_actions": [
+    "Do not run manager.sh bit_freeze under the unchanged v0.2.0 cycle-190 protocol.",
+    "Do not run manager.sh bit_register.",
+    "Do not generate BIT model predictions."
+  ],
+  "required_governance_action": {
+    "label": "post-BIT-structure-only, pre-model-evaluation amendment",
+    "recommended_protocol_version": "v0.2.1-BIT-structural-feasibility-amendment",
+    "objective_basis": "Landmark feasibility and archive completeness only; no capacity values, SOH, EOL, model outputs, RMSE, rankings, or error plots were used.",
+    "candidate_from_prespecified_cutoffs": 70,
+    "why_70": "70 was already prespecified as an exploratory cutoff and is structurally representable in every complete two-file cell; 130 and 190 are not supported by the structure report."
+  }
+}
