@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "package_name": "MSTT_RUL_v0.3.0_HUST_confirmatory_20260801",
+  "package_version": "0.3.0",
+  "created_utc": "2026-08-01T15:42:33.666491+00:00",
+  "purpose": "HUST structure-first calibration and one-shot external confirmation",
+  "hust_raw_archive_included": false,
+  "bundled_xjtu_development_cells": 16,
+  "model_source_lineage": "MSTT_RUL_v0.2.0_SOH_BIT_freeze_20260727 byte-identical mstt_soh source",
+  "files": [
+    {
+      "path": ".gitignore",
+      "size_bytes": 72,
+      "sha256": "f288f5b6f6f5715ddc7f42e93dc46a347d48aeedf910ffbc598c98f6344a400e"
+    },
+    {
+      "path": "LICENSE",
+      "size_bytes": 1068,
+      "sha256": "06c03a8e59c5d9d4857ad3f504e82d4c15158af3d9f68ee55aca1c8ba435071a"
+    },
+    {
+      "path": "README_CN.md",
+      "size_bytes": 10536,
+      "sha256": "2588b8c6f1df0c548ae0032799e0f6da518753c8623db8d2a7b5ca876b960796"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICE.md",
+      "size_bytes": 1138,
+      "sha256": "82b4dc93fefa2b4f3f9c664a969a2b50815f093b5f82b24f787e8796436f3a33"
+    },
+    {
+      "path": "VALIDATION_REPORT.md",
+      "size_bytes": 2867,
+      "sha256": "a6026fe486bd6170d97cb14cb382bbfbe8a0e285183d1050fbe94adc4897b603"
+    },
+    {
+      "path": "configs/hust_confirmatory_protocol_v0.3.0.json",
+      "size_bytes": 8410,
+      "sha256": "8153dddeadcbd014e11f7f12ce99af54ba85f86d9810716390adbab7379f30ad"
+    },
+    {
+      "path": "configs/soh_development_protocol_v0.2.0.json",
+      "size_bytes": 13164,
+      "sha256": "41e9ae88fccc46291f08450d335b49799ee185b1cc0e0e395e3b03a9c5c489a5"
+    },
+    {
+      "path": "inputs/xjtu_q2_prepared_csv.zip",
+      "size_bytes": 154268,
+      "sha256": "3bda247a0afc0dd4d16dcce56412247b4d764c5a1f57a05f218d22ce1fb6542e"
+    },
+    {
+      "path": "manager.sh",
+      "size_bytes": 12233,
+      "sha256": "65395dbb0c1fe35c0e669ad355c4849f41a49a09a62cfca6c50a1bb8d97beb33"
+    },
+    {
+      "path": "manifests/xjtu_expected_reference.csv",
+      "size_bytes": 2264,
+      "sha256": "e84759aaf56a0ef4edc6416efd89ef6fef24fe662a3bbb1549dfc1e865c92b9f"
+    },
+    {
+      "path": "preregistration/HUST_CONFIRMATORY_PROTOCOL_v0.3.0.md",
+      "size_bytes": 8255,
+      "sha256": "044d2c68b39e3ed1800f5ec4285172265822b15040a22e49311a7358096f79b9"
+    },
+    {
+      "path": "requirements.txt",
+      "size_bytes": 114,
+      "sha256": "a4e7e48fc2f451705b0f04a0e51f691999a349465576d43eab7d961282974419"
+    },
+    {
+      "path": "scripts/verify_code_package.py",
+      "size_bytes": 1942,
+      "sha256": "2b86984d2a28d4515a36ad25d0f36abda41a7a36d8139e615fab902a38be0090"
+    },
+    {
+      "path": "src/hust_v030/__init__.py",
+      "size_bytes": 98,
+      "sha256": "c8bfd0cf9a207fb5308fa889e701fc279add8daa6f3c8aa16c95fe19e2d61bc0"
+    },
+    {
+      "path": "src/hust_v030/__main__.py",
+      "size_bytes": 62,
+      "sha256": "c2ee4ddb093c9af060cafaf68219907f8a6b7b301ed3f8bea75db7555adec987"
+    },
+    {
+      "path": "src/hust_v030/cli.py",
+      "size_bytes": 12193,
+      "sha256": "6086cd6d0d969008bf6df965a4aa6d0c5a56afc839f3052e00d5e73297d94bfa"
+    },
+    {
+      "path": "src/hust_v030/common.py",
+      "size_bytes": 9877,
+      "sha256": "f83ce64f9dec8433a4eab84360b9bbd84ad793059f053cc774c0dfc2eff23ad1"
+    },
+    {
+      "path": "src/hust_v030/evaluation.py",
+      "size_bytes": 38425,
+      "sha256": "72d7a291583669cf40448aa49a2e8dfeeca57250e1e7a3532b41339bbd4eaf12"
+    },
+    {
+      "path": "src/hust_v030/freeze.py",
+      "size_bytes": 21108,
+      "sha256": "5f518c469ff66e281ac945f0b677a31e0c062fa4993e54114c38a0d5841f86a2"
+    },
+    {
+      "path": "src/hust_v030/source.py",
+      "size_bytes": 24197,
+      "sha256": "fde5ea3c0a123baf77c22563a4f3c7f10a37255e7f64ea945c62a6caffdfbfdc"
+    },
+    {
+      "path": "src/hust_v030/statistics.py",
+      "size_bytes": 7190,
+      "sha256": "87e0826ae683bf280f81dfede774bd7a1d97bc95c9a64b2d04f1ce6c1c0615a5"
+    },
+    {
+      "path": "src/mstt_soh/__init__.py",
+      "size_bytes": 85,
+      "sha256": "4454889f7af391e373c1214fdfb1efb88a13cd915a1071129ec5151c7d883f50"
+    },
+    {
+      "path": "src/mstt_soh/conformal.py",
+      "size_bytes": 17072,
+      "sha256": "50f60148bcc8bd8d9b2eb825c0fe3f1a7d1d38e5f7f97573570bc8c79928dbd2"
+    },
+    {
+      "path": "src/mstt_soh/development_freeze.py",
+      "size_bytes": 8507,
+      "sha256": "780eac2ee7e5b157f21d7ec2b094ff946b4cb572f3f0d2f8f367c37cb0e72751"
+    },
+    {
+      "path": "src/mstt_soh/model_variants.py",
+      "size_bytes": 10258,
+      "sha256": "25310d52576878df555f23acbff86f5659b445b94cfceddcde7073fa03b31ef2"
+    },
+    {
+      "path": "src/mstt_soh/pipeline.py",
+      "size_bytes": 102409,
+      "sha256": "9a78d76dffce2ecf08e0301d99013c14068cb7fe5c8e66ea3a841b27e2427d84"
+    },
+    {
+      "path": "src/mstt_soh/soh.py",
+      "size_bytes": 1900,
+      "sha256": "bf8bfd359366481f195ab96d5dce295337fda6b37e68c340b17cabf8c259da4a"
+    },
+    {
+      "path": "src/mstt_soh/statistics.py",
+      "size_bytes": 5800,
+      "sha256": "0d5e9f259329de8d828164830a757df15c16012fea0f1ecbb4c8791795e02b43"
+    },
+    {
+      "path": "tests/test_v020_config.py",
+      "size_bytes": 1975,
+      "sha256": "ecb9b557e1e7041886a4742f30d797b5b1219e19e7b07f77d577030d8d9a17fa"
+    },
+    {
+      "path": "tests/test_v020_model.py",
+      "size_bytes": 1137,
+      "sha256": "a07789d9976c67e56a9ab0033060f62a8db57c08063e5a58b0c23893d6a786cb"
+    },
+    {
+      "path": "tests/test_v020_soh.py",
+      "size_bytes": 1955,
+      "sha256": "d193c2f08f1686ea511c837c58dcdd6840daf844c7a1598a0c53e1ce551fab51"
+    },
+    {
+      "path": "tests/test_v020_statistics.py",
+      "size_bytes": 1700,
+      "sha256": "7f4b89b3376865def128f716d64e328544037d40df7acb510cc3339439a70561"
+    },
+    {
+      "path": "tests/test_z_hust_structure_and_statistics.py",
+      "size_bytes": 9964,
+      "sha256": "4312ea36160ef91e72830b7c9440a2f709880a1771fd4b10a1270f96b2f632be"
+    }
+  ]
+}

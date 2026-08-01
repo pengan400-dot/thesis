@@ -1,0 +1,320 @@
+{
+  "schema_version": "2.0",
+  "protocol_name": "MSTT_RUL SOH development, HNEI exploration, and pre-BIT confirmation freeze",
+  "version_labels": {
+    "development": "v0.2.0-SOH-development",
+    "bit_freeze": "v0.2.0-BIT-SOH-freeze",
+    "legacy_comparator": "legacy absolute-Ah checkpoint"
+  },
+  "status": "DRAFT_TO_BE_FROZEN_BEFORE_ANY_BIT_MODEL_OUTPUT",
+  "created_utc": "2026-07-27T00:00:00Z",
+  "analysis_class": "xjtu_only_soh_development_hnei_exploration_pre_bit_confirmation",
+  "claim_limit": "BIT is public historical data. The protocol may be described as prospectively specified and frozen before any BIT model evaluation, not as a prospectively collected cohort.",
+  "source_implementation": {
+    "model_topology": "SOH-native PaperMSTTVariant",
+    "full_model_trainable_parameters": 74405,
+    "single_scale_trainable_parameters": 69789,
+    "legacy_absolute_Ah_weights_reused": false,
+    "legacy_checkpoint_status": "sensitivity comparator only"
+  },
+  "soh_definition": {
+    "formula": "SOH_i_t = C_i_t / median(C_i_first_5_valid)",
+    "reference_observations": 5,
+    "capacity_unit_required": "Ah",
+    "valid_observation": "finite numeric discharge capacity in Ah within [0.5, 1.5] times the dataset-declared nominal capacity",
+    "trajectory_observation_gate": "Outside the BOL-reference calculation, a capacity observation must be finite, positive, and no greater than 1.5 times declared nominal; genuine late-life values below 0.5 nominal are retained.",
+    "bol_reference_quality_gate": "The median of the first five valid observations must lie within [0.8, 1.2] times the dataset-declared nominal capacity; this rejects already-normalized values mislabeled as Ah.",
+    "chronology": "Use the chronologically first five valid observations. Never substitute later observations because the first five appear unusual after viewing the full life.",
+    "insufficient_reference_action": "data_quality_exclusion",
+    "primary_bol_rule": "median_first_5_valid",
+    "sensitivity_bol_rules": [
+      "first_valid",
+      "median_first_3_valid",
+      "median_first_5_valid"
+    ],
+    "eol_threshold_soh": 0.8
+  },
+  "ah_to_soh_conversion": {
+    "rule": "All additive absolute-Ah hyperparameters are divided by the prespecified 2.0-Ah XJTU development reference; no HNEI or BIT performance is used.",
+    "xjtu_reference_capacity_Ah": 2.0,
+    "legacy_residual_scale_Ah": 0.08,
+    "residual_scale_SOH": 0.04,
+    "legacy_prediction_clip_Ah": [
+      0.4,
+      2.4
+    ],
+    "prediction_clip_SOH": [
+      0.2,
+      1.2
+    ],
+    "legacy_huber_delta_Ah": 0.02,
+    "huber_delta_SOH": 0.01,
+    "legacy_threshold_weight_band_Ah": 0.08,
+    "threshold_weight_band_SOH": 0.04,
+    "legacy_upward_tolerance_Ah": 0.002,
+    "upward_tolerance_SOH": 0.001,
+    "trend_delta_clip_SOH": [
+      -0.02,
+      0.01
+    ],
+    "no_external_performance_selection": true
+  },
+  "development_data": {
+    "dataset": "XJTU Battery Dataset",
+    "source_batches": [
+      1,
+      3
+    ],
+    "selection_train_batch": 1,
+    "selection_validation_batch": 3,
+    "expected_cells_per_batch": 8,
+    "frozen_structure_manifest": "manifests/xjtu_expected_reference.csv",
+    "declared_nominal_capacity_Ah": 2.0,
+    "final_refit_batches": [
+      1,
+      3
+    ],
+    "normalization": "Ignore any supplied smoothed-capacity column; recompute a seven-cycle causal trailing mean from raw Ah, then divide raw and recomputed model capacity by the median of the first five valid raw capacities for that physical cell.",
+    "external_data_used_for_training_scaler_epoch_selection_or_calibration": false
+  },
+  "task": {
+    "title": "fixed-cutoff recursive SOH forecasting under unknown future operating conditions",
+    "target": "SOH fraction",
+    "eol_threshold_SOH": 0.8,
+    "cutoffs": [
+      70,
+      130,
+      190
+    ],
+    "primary_cutoff": 190,
+    "landmark_index": "physical aging-cycle number",
+    "forecast_horizon_cycles": 700,
+    "input_window_cycles": 16,
+    "rolling_warmup_cycles": 4,
+    "minimum_pre_cutoff_physical_cycles": 20,
+    "causal_smoothing_window_cycles": 7,
+    "prediction_clip_SOH": [
+      0.2,
+      1.2
+    ],
+    "minimum_future_observations_for_RMSE": 5,
+    "rmse_support": "Genuinely observed SOH points after cutoff through the first observed EOL upper bound or the right-censoring boundary, whichever applies, and no later than cutoff plus the frozen horizon.",
+    "cell_weighting": "One RMSE per physical cell; physical cells receive equal inferential weight.",
+    "seed_aggregation": "Average the three predicted SOH trajectories pointwise, then calculate one cell-level metric.",
+    "missing_cycle_input": "Causal last observation carried forward on the physical-cycle grid; no backward fill or future interpolation.",
+    "unknown_future_forbidden_inputs": [
+      "post-cutoff actual current schedule",
+      "post-cutoff charge-rate labels",
+      "future sequence length",
+      "true data termination position",
+      "total lifetime",
+      "future EOL",
+      "future missingness pattern",
+      "statistics computed from the complete future trajectory"
+    ],
+    "known_future_current_oracle": "Exploratory only and never mixed with the primary unknown-future-condition table."
+  },
+  "features": {
+    "names": [
+      "cycle_scaled",
+      "soh",
+      "health_loss",
+      "soh_diff",
+      "soh_rolling_mean",
+      "soh_rolling_std",
+      "degradation_rate"
+    ],
+    "scaler": "StandardScaler fitted only on the relevant XJTU training cells for each selection, refit, or outer cross-fitting fold.",
+    "cycle_scale_denominator": 1000.0,
+    "rolling_window_cycles": 5,
+    "causal_only": true
+  },
+  "models": [
+    {
+      "id": "mstt_full_K5",
+      "role": "primary model",
+      "ablation": "full",
+      "loss_rollout_steps": 5,
+      "common_target_support_horizon": 5
+    },
+    {
+      "id": "mstt_single_scale_K5",
+      "role": "structural comparator",
+      "ablation": "single_scale",
+      "single_scale_kernel_dilation": [
+        5,
+        1
+      ],
+      "loss_rollout_steps": 5,
+      "common_target_support_horizon": 5
+    },
+    {
+      "id": "local_linear_trend",
+      "role": "transparent deployment baseline",
+      "lookback_physical_cycles": 20,
+      "slope_clip_SOH_per_cycle": [
+        -0.02,
+        -1e-06
+      ]
+    }
+  ],
+  "training": {
+    "seeds": [
+      42,
+      2024,
+      3407
+    ],
+    "batch_size": 64,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "max_epochs": 300,
+    "patience": 30,
+    "optimizer": "AdamW",
+    "dropout": 0.1,
+    "attention_heads": 4,
+    "rope_base": 10000.0,
+    "residual_scale_SOH": 0.04,
+    "trend_delta_window": 3,
+    "gamma": 0.97,
+    "huber_delta_SOH": 0.01,
+    "threshold_weight_strength": 2.0,
+    "threshold_weight_band_SOH": 0.04,
+    "upward_tolerance_SOH": 0.001,
+    "upward_penalty": 0.1,
+    "amp": false,
+    "common_support_gate": "Both neural arms use identical cell and target-cycle support.",
+    "external_data_loaded_during_training": false
+  },
+  "conformal": {
+    "calibration_source": "XJTU Batch-1 plus Batch-3 only",
+    "method": "four-fold batch-stratified outer cross-fitting at the physical-cell level",
+    "outer_folds": 4,
+    "fold_construction": "Sort B1 and B3 cell IDs independently; assign two B1 and two B3 cells to each outer fold.",
+    "within_fold_epoch_selection": "Remaining B1 cells train and remaining B3 cells select epoch; the outer-held-out cells are not used.",
+    "model": "mstt_full_K5",
+    "seed_aggregation": "Pointwise mean predicted SOH trajectory across seeds before scoring.",
+    "nonconformity_score": "Maximum absolute SOH error over evaluable genuinely observed post-cutoff points for a cell, yielding a simultaneous trajectory band.",
+    "nominal_coverages": [
+      0.8,
+      0.9
+    ],
+    "finite_sample_quantile": "ceil((n+1)*(1-alpha))-th ordered score, clipped to n",
+    "bit_updates_quantiles": false,
+    "report": [
+      "nominal simultaneous coverage",
+      "empirical cellwise simultaneous coverage",
+      "pointwise coverage as descriptive",
+      "mean interval width",
+      "EOL compatibility",
+      "cohort-specific results"
+    ]
+  },
+  "hnei": {
+    "role": "exploratory cross-institutional replication and pipeline stress test",
+    "performance_may_change_v0_2_0": false,
+    "if_performance_changes_model": "increment to v0.2.1 and treat HNEI as development-exposed",
+    "post_result_decision_receipt": "An explicit unchanged decision is required before BIT structure preflight; a modified decision blocks v0.2.0.",
+    "archive_file_name": "BatteryLife.zip",
+    "archive_sha256": "a6c33eaee5edbf6288dea4bf8ce7513b0fb1c27579c8ae78882dd1279f54a901",
+    "expected_cells": 14,
+    "declared_nominal_capacity_Ah": 2.8,
+    "accepted_discharge_rate_C": [
+      1.25,
+      1.75
+    ],
+    "expected_members": [
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_a.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_b.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_c.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_d.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_e.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_f.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_g.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_j.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_l.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_n.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_o.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_p.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_s.pkl",
+      "BatteryLife/HNEI_18650_NMC_LCO_25C_0-100_0.5-1.5C_t.pkl"
+    ]
+  },
+  "bit": {
+    "dataset_title": "Battery Degradation Dataset (Fixed Current Profiles and Arbitrary Uses Profiles)",
+    "dataset_version": 3,
+    "dataset_doi": "10.17632/kw34hhw7xg.3",
+    "official_expected_total_cells": 77,
+    "official_expected_fixed_profile_cells": 22,
+    "official_expected_arbitrary_use_cells": 55,
+    "actual_counts_rule": "Actual counts are determined only by the frozen archive inventory and landmark flow.",
+    "pre_freeze_allowed": [
+      "archive hash",
+      "file count and names",
+      "field names and array shapes",
+      "cycle-index field and range",
+      "capacity unit",
+      "missing counts",
+      "fixed versus arbitrary cohort identifier",
+      "availability of the physical cycle-190 landmark"
+    ],
+    "pre_freeze_forbidden": [
+      "any model prediction",
+      "model RMSE",
+      "model error plot",
+      "cell selection based on model output",
+      "cutoff selection based on model output"
+    ],
+    "primary_cohort": "arbitrary_use",
+    "key_secondary_cohort": "fixed_profile",
+    "primary_cutoff": 190,
+    "primary_metric": "cell-level future SOH RMSE",
+    "H1_difference": "RMSE_single_scale_K5 - RMSE_full_K5",
+    "H2_difference": "RMSE_local_linear_trend - RMSE_full_K5",
+    "gatekeeping": "Test H2 confirmatorily only if two-sided H1 p < 0.05. No Holm adjustment is applied to H1 and gated H2.",
+    "cohort_pooling": "No ordinary pooled paired p value. Optional overall summaries use cohort-stratified bootstrap and report heterogeneity.",
+    "flow_counts": [
+      "total files",
+      "data-quality pass",
+      "EOL before 190",
+      "right-censored before 190",
+      "at risk and evaluable at 190",
+      "RMSE analysis set with at least five future SOH observations",
+      "timing analysis set with observed or interval-determined EOL"
+    ]
+  },
+  "statistics": {
+    "alpha_two_sided": 0.05,
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 20260727,
+    "permutation_method": "paired sign-flip randomization on cell-level differences",
+    "permutation_repetitions_if_not_exact": 100000,
+    "permutation_seed": 20260728,
+    "exact_permutation_max_nonzero_pairs": 20,
+    "zero_difference_rule": "Retain zeros in descriptive and bootstrap estimates; zero signs do not affect the sign-flip statistic.",
+    "missing_pair_rule": "Use complete model pairs only and report the missing-pair cell IDs and reasons.",
+    "stopping_rule": "Use every eligible frozen physical cell; do not stop early based on significance.",
+    "effect_direction": "Positive comparator-minus-full RMSE favors full K5.",
+    "hnei_exploratory_family": {
+      "cutoff": 190,
+      "reference_model": "mstt_full_K5",
+      "comparators": [
+        "mstt_single_scale_K5",
+        "local_linear_trend"
+      ],
+      "metrics": [
+        "future_capacity_RMSE_SOH",
+        "censor_aware_timing_score_cycles"
+      ],
+      "inference_label": "descriptive exploratory; no confirmatory multiplicity claim"
+    }
+  },
+  "registration": {
+    "required_before_first_BIT_model_output": [
+      "OSF immutable registration",
+      "GitHub release for the exact frozen commit",
+      "Zenodo specific-version DOI",
+      "model, scaler, parser, config, archive, and manifest SHA-256 values"
+    ],
+    "allowed_wording": "prospectively specified and frozen before any BIT model evaluation"
+  }
+}

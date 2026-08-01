@@ -1,0 +1,17 @@
+cell_id,batch,source_path,source_sha256,n_cycles,first_cycle,last_cycle
+B1_2C_battery-1,1,canonical_data/curves/B1_2C_battery-1.csv,11d37b813be7eb38f63ee56311ca6ce3fb6d4b4e76eae634ee242906bc391b94,390,1,390
+B1_2C_battery-2,1,canonical_data/curves/B1_2C_battery-2.csv,70d105c31731e4255a501e481d8942f25aedfc3312e3c7567c1e9f65a15fd9fa,407,1,407
+B1_2C_battery-3,1,canonical_data/curves/B1_2C_battery-3.csv,68fb5935540c9fbcd71ed8f6dc0993a085e00f063d0cdfda0d9de4fa6f8fa0df,393,1,393
+B1_2C_battery-4,1,canonical_data/curves/B1_2C_battery-4.csv,745f402f7df7f7c81fff017e7c0e5ba1b668197b1922ede867afc917d1df9e61,396,1,396
+B1_2C_battery-5,1,canonical_data/curves/B1_2C_battery-5.csv,899dd34745a7b7397c235085f51c6e8dd01fae9c97e666547792b2d30db45803,403,1,403
+B1_2C_battery-6,1,canonical_data/curves/B1_2C_battery-6.csv,7fef555d9ff928777c972531eb2da48f89ae705f5d337faa5dd1a570dc137cb0,408,1,408
+B1_2C_battery-7,1,canonical_data/curves/B1_2C_battery-7.csv,8ea68c81730456095087df2b762bab612bc062424ff152b76637f1fda6d59421,402,1,402
+B1_2C_battery-8,1,canonical_data/curves/B1_2C_battery-8.csv,d8ad0e1d208131d30c9f2032bf4c5430628bae169f09aeae60dde9b010d00c50,420,1,420
+B3_R2.5_battery-1,3,canonical_data/curves/B3_R2.5_battery-1.csv,d9c000e743aae6cfbec28d2412c6040c24a4246cf8d089b1f530836465e760c9,592,1,592
+B3_R2.5_battery-2,3,canonical_data/curves/B3_R2.5_battery-2.csv,6dd1d9403cb9e6e2f21066b313828633aa9f8dbb83f60dd00d384a39dbc2688a,552,1,552
+B3_R2.5_battery-3,3,canonical_data/curves/B3_R2.5_battery-3.csv,40b2325c40f3ccbba612cb6cbd49648bede3f6deae1a770bd7f7055437e4cc16,667,1,667
+B3_R2.5_battery-4,3,canonical_data/curves/B3_R2.5_battery-4.csv,c8e0da15479c5eeaa58ae8099ede073d67a927aa960b177a30c4dda61315f8bc,557,1,557
+B3_R2.5_battery-5,3,canonical_data/curves/B3_R2.5_battery-5.csv,763d072bcb9ae98b0376bc54203ac375015ec0040cd481330c9867463ef96f16,562,1,562
+B3_R2.5_battery-6,3,canonical_data/curves/B3_R2.5_battery-6.csv,4573062803f1249c8c12ea0363423467ace84cc881ff47057288536e74300e4a,542,1,542
+B3_R2.5_battery-7,3,canonical_data/curves/B3_R2.5_battery-7.csv,c09d591b71d7f2ad5a2174a907aff2bde6b3383df76f7217dc0e431836092692,527,1,527
+B3_R2.5_battery-8,3,canonical_data/curves/B3_R2.5_battery-8.csv,fe68988b1affd688dba7d827d0f926228b0922c908e1439a07b1e4cf8f3fcc09,617,1,617

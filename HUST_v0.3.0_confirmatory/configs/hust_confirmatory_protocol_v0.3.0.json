@@ -1,0 +1,155 @@
+{
+  "schema_version": "3.0",
+  "protocol_name": "MSTT_RUL HUST preregistered calibration and one-shot external confirmation",
+  "version_label": "v0.3.0-HUST",
+  "status": "TO_BE_FROZEN_BEFORE_ANY_HUST_CAPACITY_OR_MODEL_OUTPUT",
+  "created_utc": "2026-08-01T00:00:00Z",
+  "analysis_class": "xjtu_only_model_development_hust_structure_first_calibration_then_one_shot_confirmation",
+  "claim_limit": "HUST is a public historical dataset. The confirmation may be described as prospectively specified and frozen before study-specific HUST capacity and model-output access, not as a prospectively collected cohort.",
+  "dataset": {
+    "name": "HUST personalized discharge protocol dataset",
+    "repository": "Mendeley Data",
+    "version": 2,
+    "doi": "10.17632/nsc7hnsg4s.2",
+    "expected_physical_cells": 77,
+    "chemistry": "LFP/graphite",
+    "nominal_capacity_Ah": 1.1,
+    "nominal_voltage_V": 3.3,
+    "temperature_C": 30,
+    "raw_archive_name": "hust_data.zip",
+    "expected_pickle_member_pattern": "our_data/*.pkl",
+    "trusted_source_required": true,
+    "pickle_security_note": "Python pickle can execute code. Open only the archive downloaded from the registered official source and bind its SHA-256 in the structure receipt before parsing."
+  },
+  "split": {
+    "method": "Sort physical cell IDs by SHA-256 of fixed salt plus NUL plus cell ID; first 20 are parser/calibration, remaining 57 are sealed confirmation.",
+    "sha256_salt": "MSTT_RUL_v0.3.0_HUST_split_20260801",
+    "calibration_cells": 20,
+    "confirmation_cells": 57,
+    "performance_stratification_or_reallocation_prohibited": true,
+    "confirmation_members_must_not_be_unpickled_before_calibration_freeze": true
+  },
+  "model_lineage": {
+    "development_dataset": "XJTU Batches 1 and 3 only",
+    "development_protocol": "configs/soh_development_protocol_v0.2.0.json",
+    "models": [
+      {
+        "id": "mstt_full_K5",
+        "role": "primary candidate",
+        "ablation": "full",
+        "loss_rollout_steps": 5,
+        "expected_parameters": 74405
+      },
+      {
+        "id": "mstt_single_scale_K5",
+        "role": "gated structural comparator",
+        "ablation": "single_scale",
+        "loss_rollout_steps": 5,
+        "expected_parameters": 69789
+      },
+      {
+        "id": "local_linear_trend",
+        "role": "primary transparent strong comparator",
+        "lookback_physical_cycles": 20,
+        "slope_clip_SOH_per_cycle": [-0.02, -1e-06]
+      }
+    ],
+    "seeds": [42, 2024, 3407],
+    "external_retraining_fine_tuning_scaler_update_or_model_selection_prohibited": true
+  },
+  "soh_definition": {
+    "formula": "SOH_i_t = C_i_t / median(C_i_first_5_valid)",
+    "reference_observations": 5,
+    "bol_candidate_bounds_fraction_of_nominal": [0.5, 1.5],
+    "bol_reference_bounds_fraction_of_nominal": [0.8, 1.2],
+    "eol_threshold_raw_SOH": 0.8,
+    "eol_event": "first genuinely observed raw SOH at or below 0.80",
+    "model_target": "seven-cycle causal trailing mean of raw SOH after causal LOCF on the physical-cycle grid"
+  },
+  "dynamic_landmark": {
+    "name": "preregistered causal SOH-anchored landmark",
+    "rule": "For each cell, choose the first genuinely observed physical cycle having 0.80 < raw SOH <= 0.90, no earlier observed raw SOH <= 0.80, and at least 20 observed prefix cycles.",
+    "lower_open_raw_SOH": 0.8,
+    "upper_closed_raw_SOH": 0.9,
+    "minimum_observed_prefix_cycles": 20,
+    "minimum_future_observations_for_RMSE": 5,
+    "future_support_rule": "Observed post-landmark raw SOH through the first observed EOL cycle or right-censor boundary, and no later than landmark plus 700 physical cycles.",
+    "no_eligible_landmark_action": "retain in flow diagram and exclude from estimable paired cohort; never change the landmark after capacity access"
+  },
+  "task": {
+    "target_unit": "SOH fraction",
+    "input_window_cycles": 16,
+    "rolling_warmup_cycles": 4,
+    "causal_smoothing_window_cycles": 7,
+    "feature_rolling_window_cycles": 5,
+    "forecast_horizon_cycles": 700,
+    "prediction_clip_SOH": [0.2, 1.2],
+    "unknown_future_forbidden_inputs": [
+      "post-landmark actual current schedule",
+      "post-landmark discharge-protocol labels",
+      "future sequence length",
+      "true data termination position",
+      "true EOL",
+      "future missingness pattern",
+      "statistics computed from the complete future trajectory"
+    ],
+    "seed_aggregation": "Average the three neural predicted SOH trajectories pointwise before any cell-level metric or threshold crossing is calculated.",
+    "statistical_unit": "physical cell"
+  },
+  "parser": {
+    "reference_implementation": "Microsoft BatteryML HUST preprocessor: integrate negative current over time within each cycle",
+    "capacity_formula": "sum(max(-I_i_A,0) * (t_i-t_{i-1}) / 3600) for i=1..n-1",
+    "required_columns": ["Current (mA)", "Time (s)", "Voltage (V)"],
+    "nonfinite_timeseries_action": "Exclude the affected physical cycle from capacity integration; do not interpolate or bridge across a non-finite current, time, or voltage sample.",
+    "problem_cell_rule": "For cell 7-5 only, exclude the first two raw cycles exactly as in the public BatteryML HUST preprocessor; preserve remaining physical cycle numbers.",
+    "missing_input_fill": "causal last observation carried forward only; no backward fill or future interpolation"
+  },
+  "calibration": {
+    "model": "mstt_full_K5",
+    "purpose": "interval-width calibration and parser validation only; no model, feature, hyperparameter, landmark, exclusion-rule, or comparator change is allowed",
+    "nonconformity_score": "maximum absolute SOH error over each calibration cell's evaluable observed future support",
+    "nominal_simultaneous_coverages": [0.8, 0.9],
+    "quantile_rule": "ceil((n+1)*coverage)-th ordered cell score, clipped to n",
+    "minimum_eligible_calibration_cells_for_UQ": 15,
+    "insufficient_calibration_action": "UQ is not estimable; continue the frozen point-prediction confirmation without substituting another calibration set"
+  },
+  "statistics": {
+    "minimum_eligible_confirmation_cells": 40,
+    "alpha": 0.05,
+    "paired_test": "two-sided Wilcoxon signed-rank at the physical-cell level",
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 20260801,
+    "effect_definition": "comparator RMSE minus mstt_full_K5 RMSE; positive values favor mstt_full_K5",
+    "minimum_practical_mean_RMSE_improvement_SOH": 0.005,
+    "fixed_sequence": {
+      "H1": "mstt_full_K5 versus local_linear_trend on cell-level future SOH RMSE",
+      "H1_success": "p < 0.05, paired-bootstrap 95% CI lower bound > 0, and mean comparator-minus-full RMSE >= 0.005 SOH",
+      "H2": "mstt_full_K5 versus mstt_single_scale_K5 on cell-level future SOH RMSE",
+      "H2_gate": "perform the H2 confirmatory Wilcoxon test only if H1 has two-sided p < 0.05; otherwise report H2 effect descriptively without a confirmatory p value"
+    },
+    "secondary_descriptive_metrics": [
+      "future SOH MAE",
+      "censor-aware timing score",
+      "threshold-hit rate",
+      "80% and 90% simultaneous trajectory coverage",
+      "mean interval width",
+      "EOL-band compatibility"
+    ]
+  },
+  "governance": {
+    "required_order": [
+      "structure-only archive inventory and deterministic split",
+      "XJTU-only model training or validation of previously frozen v0.2.0-SOH weights",
+      "evaluator source and model freeze plus independently timestamped receipt",
+      "open only the 20 calibration cells",
+      "calibration quantile freeze plus independently timestamped receipt",
+      "write one-shot confirmation-open receipt before reading any of the 57 confirmation pickles",
+      "one deterministic confirmation evaluation with exact-code resume allowed only after an interrupted run",
+      "cell-first aggregation and result packaging"
+    ],
+    "minimum_evaluator_receipt": "40-character Git commit plus immutable public release/DOI locator bound to evaluator-freeze SHA-256",
+    "minimum_calibration_receipt": "40-character Git commit plus immutable public release/DOI locator bound to calibration-freeze SHA-256",
+    "post_confirmation_changes": "Any changed model, parser, protocol, split, feature, landmark, exclusion rule, metric, or statistic is a new exploratory version and cannot replace v0.3.0 confirmation.",
+    "retain_all_parse_failures_and_exclusions": true
+  }
+}

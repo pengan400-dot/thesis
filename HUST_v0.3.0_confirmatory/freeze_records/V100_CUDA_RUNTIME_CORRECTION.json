@@ -1,0 +1,35 @@
+{
+  "status": "PASS_RUNTIME_COMPATIBILITY_CORRECTION",
+  "created_utc": "2026-08-01T17:16:33.023305+00:00",
+  "scope": "pre-formal-training runtime compatibility correction",
+  "gpu": "Tesla V100-SXM2-32GB",
+  "compute_capability": [
+    7,
+    0
+  ],
+  "failed_runtime": {
+    "torch": "2.7.0+cu128",
+    "reason": "The CUDA 12.8 wheel did not include an executable sm_70 kernel image for Tesla V100."
+  },
+  "replacement_runtime": {
+    "torch": "2.7.1+cu126",
+    "torch_cuda": "12.6",
+    "compiled_architectures": [
+      "sm_50",
+      "sm_60",
+      "sm_70",
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90"
+    ],
+    "cusparselt": "0.6.3"
+  },
+  "formal_training_started_before_correction": false,
+  "formal_weights_generated_before_correction": false,
+  "hust_calibration_pickle_opened": false,
+  "hust_confirmation_pickle_opened": false,
+  "protocol_modified": false,
+  "model_source_modified": false,
+  "development_data_modified": false
+}
