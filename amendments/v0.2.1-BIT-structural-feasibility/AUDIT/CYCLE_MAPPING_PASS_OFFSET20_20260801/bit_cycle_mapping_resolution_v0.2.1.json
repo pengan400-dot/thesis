@@ -1,0 +1,42 @@
+{
+  "status": "PASS_OFFSET20_FILENAME_SEMANTIC_MAPPING",
+  "created_utc": "2026-08-01T03:46:59.771628+00:00",
+  "governance_label": "post-BIT-structure-only, pre-model-evaluation amendment",
+  "mapping_is_governance_choice_not_hidden_ground_truth": true,
+  "mapping_rule": {
+    "first20_filename_semantics": "first 20 completed physical cycles",
+    "first20_local_retained": "1..20 -> physical 1..20",
+    "first20_local_21": "excluded terminal workbook bucket; not used for physical-landmark extraction",
+    "later_formula": "physical_cycle = 20 + local_cycle",
+    "later_local_1_maps_to": 21,
+    "maximum_mapped_physical_cycle": 121
+  },
+  "input_hashes": {
+    "workbook_inventory_sha256": "b19bd997ea7982d74fe2576a0790f4e16e776bcfc8302043690b4b8f418c5c3d",
+    "cell_inventory_sha256": "fd873e12acbf2039504a8a9f27f6bcade223e609a55292a8373491ee5dc38b43",
+    "naming_audit_sha256": "5ef01be46b2de47eae6f738dcd5a1231a1577d4fe55eab68576c9657b39ce004"
+  },
+  "workbook_rows": 145,
+  "physical_cell_rows": 73,
+  "included_cells": 72,
+  "excluded_cells": 1,
+  "excluded_cell_ids": [
+    "BIT_#2"
+  ],
+  "included_cohort_counts": {
+    "arbitrary_use": 55,
+    "fixed_profile": 17
+  },
+  "cycle70_representable_for_all_included_cells": true,
+  "cycle130_representable_for_any_included_cell": false,
+  "cycle190_representable_for_any_included_cell": false,
+  "xlsx_opened": false,
+  "capacity_read": false,
+  "soh_computed": false,
+  "eol_computed": false,
+  "model_code_imported": false,
+  "model_output_generated": false,
+  "warnings": [],
+  "failures": [],
+  "next_step": "If PASS, review and commit this audit. Then update the v0.2.1 protocol/config/freeze gate and register the amendment before any BIT capacity parsing or model evaluation."
+}
