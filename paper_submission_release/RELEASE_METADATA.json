@@ -1,0 +1,27 @@
+{
+  "title": "HUST final one-shot evaluation and paper submission release",
+  "version": "paper-submission-v1.0",
+  "doi": "10.5281/zenodo.21758262",
+  "creator": {
+    "name": "Xue An Peng",
+    "orcid": "0009-0004-3553-3488",
+    "affiliation": "Heilongjiang Bayi Agricultural University"
+  },
+  "license": "MIT",
+  "github_tag": "paper-submission-v1.0",
+  "third_party_raw_data_included": false,
+  "expected_artifact_sha256": {
+    "evaluator/MSTT_RUL_v0.3.0_HUST_evaluator_pre_calibration_freeze.zip": "408faf046cd199ff7f1a2329a939ad0bc18358c10dbd2bbf4b5803cfc67af18c",
+    "calibration/MSTT_RUL_v0.3.0_HUST_calibration_pre_confirmation_freeze.zip": "485fa7bf9eb9665d1b73f3ed1da84949e0a9aeda65486dbebfb323d04f69cd83",
+    "results/MSTT_RUL_v0.3.0_HUST_confirmatory_one_shot_results.zip": "b694230e3ed124f6a6d9f1aaf9dbf14715d64605a11bb33fb6de1ecce5cadf9c"
+  },
+  "hust_confirmation": {
+    "run_uuid": "ca19cabf-061c-4e6a-8ac0-8d41072f627c",
+    "assigned_cells": 57,
+    "evaluable_cells": 57,
+    "excluded_cells": 0,
+    "status": "ESTIMABLE",
+    "h1_supported": false,
+    "h2_supported": false
+  }
+}

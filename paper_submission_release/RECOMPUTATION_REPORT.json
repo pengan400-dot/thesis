@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "source_result_zip": "/root/shared-storage/paper-submission-v1.0/results/MSTT_RUL_v0.3.0_HUST_confirmatory_one_shot_results.zip",
+  "source_result_zip_sha256": "b694230e3ed124f6a6d9f1aaf9dbf14715d64605a11bb33fb6de1ecce5cadf9c",
+  "run_uuid": "ca19cabf-061c-4e6a-8ac0-8d41072f627c",
+  "physical_cells": 57,
+  "model_records": 171,
+  "calibration_cells": 20,
+  "H1_supported": false,
+  "H2_supported": false,
+  "checks": {
+    "model_summary_matches_archive": true,
+    "fixed_sequence_matches_archive": true,
+    "coverage_summary_matches_archive": true,
+    "calibration_quantiles_match_archive": true
+  }
+}

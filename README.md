@@ -1,3 +1,34 @@
+# MSTT_RUL external-validation releases
+
+## Latest paper-submission release
+
+**HUST final one-shot evaluation and paper submission release**
+
+- Version: `paper-submission-v1.0`
+- DOI: `10.5281/zenodo.21758262`
+- GitHub release:
+  `https://github.com/pengan400-dot/thesis/releases/tag/paper-submission-v1.0`
+- HUST confirmation cells: 57
+- Confirmation exclusions: 0
+- H1 complex-model superiority: not supported
+- H2 multiscale superiority: not supported
+
+## Version–DOI map
+
+| Version | Scope | DOI |
+|---|---|---|
+| v0.1.0-freeze | XJTU pre-unblinding freeze | 10.5281/zenodo.21570017 |
+| v0.1.1-amendment | XJTU observation-semantics amendment | 10.5281/zenodo.21571142 |
+| v0.2.0-SOH | SOH development freeze | 10.5281/zenodo.21729888 |
+| v0.2.1-BIT | BIT structural-feasibility amendment | 10.5281/zenodo.21734477 |
+| paper-submission-v1.0 | HUST final one-shot evaluation and paper release | 10.5281/zenodo.21758262 |
+
+The MIT License applies only to author-created code, documentation,
+and derived result artifacts. No third-party raw battery datasets are
+redistributed.
+
+---
+
 # MSTT RUL Batch-4/5/6 Confirmatory External Validation
 
 This repository contains the preregistered, pre-unblinding software
