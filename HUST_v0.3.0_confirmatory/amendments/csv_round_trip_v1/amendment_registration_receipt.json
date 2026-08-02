@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-08-02T00:14:40.859030+00:00",
+  "amendment_id": "HUST_CSV_ROUND_TRIP_PARSER_v1",
+  "git_commit": "8df85b48cb6c81a391c4b092046efd7e1e942d67",
+  "immutable_public_locator": "https://raw.githubusercontent.com/pengan400-dot/thesis/8df85b48cb6c81a391c4b092046efd7e1e942d67/HUST_v0.3.0_confirmatory/amendments/csv_round_trip_v1/amendment_manifest.json",
+  "manifest_name": "amendment_manifest.json",
+  "manifest_sha256": "5d48ab88c34b1afccf6f8e72bdc237aaa1ff56644b9acec40bea6fedbf466a65",
+  "wrapper_name": "run_hust_cli_roundtrip.py",
+  "wrapper_sha256": "8f78d536e4fe91147b184ad070646d19a13b742d87306d832cda8988ab447d52",
+  "remote_commit_verified_before_registration": true,
+  "calibration_data_opened_before_registration": true,
+  "calibration_model_output_computed_before_registration": false,
+  "confirmation_members_unpickled_before_registration": false,
+  "model_or_weight_change": false,
+  "protocol_or_statistical_rule_change": false,
+  "effective_csv_float_precision": "round_trip"
+}
