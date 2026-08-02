@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "status": "PASS_PRE_CONFIRMATION_MECHANICAL_IMPLEMENTATION_AMENDMENT",
+  "amendment_id": "HUST_CSV_ROUND_TRIP_PARSER_v2",
+  "created_utc": "2026-08-02T01:02:42.245268+00:00",
+  "scope": "Prepared HUST CSV path targeting only; float parser, model, protocol and statistical rules unchanged",
+  "trigger": "Confirmation preparation writes curves under confirmation/prepared/curves, while v1 matched confirmation/curves",
+  "source_commit_reviewed": "502a3d88c5ddcdaa3c48e85b288726a0197a36dc",
+  "supersedes_for_confirmation": "HUST_CSV_ROUND_TRIP_PARSER_v1",
+  "v1_manifest_sha256": "5d48ab88c34b1afccf6f8e72bdc237aaa1ff56644b9acec40bea6fedbf466a65",
+  "v1_registration_receipt_sha256": "7d3651b2a3daed86b0ffd37297300eb44f25ba18f9d50b53257bf59cce9a16a5",
+  "calibration_freeze_archive_sha256": "485fa7bf9eb9665d1b73f3ed1da84949e0a9aeda65486dbebfb323d04f69cd83",
+  "calibration_freeze_receipt_sha256": "a45731888bea0ea1a36c4bb2fbd7c52034abb12a895b84d5697ff1ecd2ab49ca",
+  "wrapper_name": "run_hust_cli_roundtrip_v2.py",
+  "wrapper_sha256": "1b5d46f61ea4e4e290be89e80b81564e6a3ad04c8e0da651157a92d7b4105d43",
+  "effective_csv_float_precision": "round_trip",
+  "target_paths": [
+    "04_hust_calibration/curves/HUST_*.csv",
+    "confirmation/prepared/curves/HUST_*.csv"
+  ],
+  "confirmation_files_before_amendment": 0,
+  "confirmation_state_exists_before_amendment": false,
+  "confirmation_members_unpickled_before_amendment": false,
+  "model_or_weight_change": false,
+  "protocol_change": false,
+  "landmark_change": false,
+  "exclusion_change": false,
+  "metric_change": false,
+  "statistical_test_change": false,
+  "uncertainty_quantile_rule_change": false,
+  "calibration_output_change": false,
+  "calibration_freeze_change": false
+}
