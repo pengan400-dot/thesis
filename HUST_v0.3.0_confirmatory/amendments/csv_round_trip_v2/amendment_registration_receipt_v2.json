@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-08-02T01:06:03.270593+00:00",
+  "amendment_id": "HUST_CSV_ROUND_TRIP_PARSER_v2",
+  "git_commit": "811c497571e05c180f26eac300c85f07e00306a6",
+  "immutable_public_locator": "https://raw.githubusercontent.com/pengan400-dot/thesis/811c497571e05c180f26eac300c85f07e00306a6/HUST_v0.3.0_confirmatory/amendments/csv_round_trip_v2/amendment_manifest_v2.json",
+  "manifest_name": "amendment_manifest_v2.json",
+  "manifest_sha256": "4d00ff69dc5c43f4b36226089da7db64aea1ea159bacb7f8e36c81b6bc43d5d1",
+  "wrapper_name": "run_hust_cli_roundtrip_v2.py",
+  "wrapper_sha256": "1b5d46f61ea4e4e290be89e80b81564e6a3ad04c8e0da651157a92d7b4105d43",
+  "calibration_freeze_archive_sha256": "485fa7bf9eb9665d1b73f3ed1da84949e0a9aeda65486dbebfb323d04f69cd83",
+  "calibration_freeze_receipt_sha256": "a45731888bea0ea1a36c4bb2fbd7c52034abb12a895b84d5697ff1ecd2ab49ca",
+  "remote_commit_verified_before_registration": true,
+  "confirmation_files_before_registration": 0,
+  "confirmation_state_exists_before_registration": false,
+  "confirmation_members_unpickled_before_registration": false,
+  "model_or_weight_change": false,
+  "protocol_or_statistical_rule_change": false,
+  "effective_csv_float_precision": "round_trip",
+  "confirmation_curve_path": "confirmation/prepared/curves/HUST_*.csv"
+}
