@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "status": "PASS_POST_CONFIRMATION_MECHANICAL_PLOT_AMENDMENT",
+  "amendment_id": "HUST_MATPLOTLIB_BOXPLOT_TICK_LABELS_v1",
+  "created_utc": "2026-08-02T02:16:12.202204+00:00",
+  "trigger": "Current Matplotlib Axes.boxplot rejects the frozen labels keyword and accepts tick_labels",
+  "scope": "Runtime plotting API keyword compatibility only",
+  "wrapper_name": "run_hust_aggregate_mpl_compat.py",
+  "wrapper_sha256": "10bef133fb7cf855d9d7d312bf7934526b870e9970a618289793b7c3337b1e8d",
+  "confirmation_run_uuid": "ca19cabf-061c-4e6a-8ac0-8d41072f627c",
+  "confirmation_status_before_amendment": "PASS",
+  "confirmation_hard_audit_before_amendment": "PASS",
+  "confirmation_files_modified": false,
+  "model_or_weight_change": false,
+  "data_or_exclusion_change": false,
+  "metric_change": false,
+  "statistical_test_change": false,
+  "fixed_sequence_change": false,
+  "calibration_change": false,
+  "visual_data_change": false,
+  "keyword_translation": {
+    "from": "labels",
+    "to": "tick_labels"
+  }
+}
