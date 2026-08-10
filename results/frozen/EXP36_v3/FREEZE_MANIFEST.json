@@ -1,0 +1,189 @@
+{
+  "freeze_stage": "EXP36_PREFIX_REPLAY_V3_FINAL",
+  "status": "STOP_BEFORE_TRAIL_DGR_TRAINING",
+  "created_local": "20260810_230910",
+  "source_project": "/root/shared-storage/TRAIL_RUL_MODEL_EXPERIMENT_20260808",
+  "freeze_dir": "/root/shared-storage/RSCA_RUL_FROZEN_EVIDENCE/EXP36_PREFIX_REPLAY_V3_FINAL_20260810_230910",
+  "files": [
+    {
+      "path": "ENVIRONMENT.json",
+      "size_bytes": 288,
+      "sha256": "96cdaae88e94ca9c2a79be50115815e37980c23ecd05581a749f618c23656f2a"
+    },
+    {
+      "path": "PAPER_READY_EXP36_V3_SUMMARY.json",
+      "size_bytes": 1797,
+      "sha256": "fb8c72b3be507c25e2512bcdcad85f2e69c0a524f7a6ff3b98f7cf8f7fb51203"
+    },
+    {
+      "path": "PAPER_READY_EXP36_V3_SUMMARY.txt",
+      "size_bytes": 1192,
+      "sha256": "aaf66780cfc0977eb4f395d1dc1acdb0284cb55805711ffedff142b19e2e1aae"
+    },
+    {
+      "path": "PAPER_TABLE_EXP36_DOMAIN_SUMMARY.csv",
+      "size_bytes": 656,
+      "sha256": "261753c91c9dc7ac3edeeba83e2203762d19b3f4b27079b5fdad087661990601"
+    },
+    {
+      "path": "PAPER_TABLE_EXP36_PHYSICAL_CELLS.csv",
+      "size_bytes": 4074,
+      "sha256": "5c97d75137953259d32a2b585b25896fe5d45786206b1945991a2d2ef43db4e2"
+    },
+    {
+      "path": "provenance/config_trail.yaml",
+      "size_bytes": 1428,
+      "sha256": "918ea30fee8b93f0d5476ca0d49cdc9caa048f60d18d7cf1d1924f4c21e8d5fc"
+    },
+    {
+      "path": "provenance/config_trail_crossdomain.yaml",
+      "size_bytes": 1303,
+      "sha256": "886289a28ba15b092728212df9c916a03c64b70c6bd1b0d24365fc58867b7d0a"
+    },
+    {
+      "path": "provenance/exp36_v3_evalmode_probe.log",
+      "size_bytes": 1700,
+      "sha256": "edf7b622e488021d2d252e03c974a3d24e447985337c8e0e575cecc5c523302c"
+    },
+    {
+      "path": "provenance/exp36_v3_full.log",
+      "size_bytes": 48957,
+      "sha256": "7237393814a99ae3aa513a372b50855a337467816f8cb8c0e38dd84d6f59aa61"
+    },
+    {
+      "path": "provenance/exp36_v3_preflight.log",
+      "size_bytes": 922,
+      "sha256": "3c8dc49959735b7757f770ca0fdb5652903cea3fddaf74b03bb7af61c91943e2"
+    },
+    {
+      "path": "provenance/experiments/exp_27_trail_lite_recursive.py",
+      "size_bytes": 7640,
+      "sha256": "5392118fcb227b367731c8fc60e75e69235f04f9a599beec99659f51157d0345"
+    },
+    {
+      "path": "provenance/experiments/exp_28_trail_lite_crossdomain.py",
+      "size_bytes": 13630,
+      "sha256": "3dfd8a64030472036b9f40e7f3650ef1ebe2d4924d49e2fee366e16b4ec546a0"
+    },
+    {
+      "path": "provenance/experiments/exp_36_trail_dgr_prefix_replay_v3.py",
+      "size_bytes": 43138,
+      "sha256": "67e6b408414be9391bd7222b01491df09858e880e17e2428d181eb0d45346894"
+    },
+    {
+      "path": "provenance/experiments/exp_36_v3_evalmode_repro_probe.py",
+      "size_bytes": 4126,
+      "sha256": "637b672721ccbfb193f8b6955609a0d5a08a9adff26d0b275e0f78d0fc46bec1"
+    },
+    {
+      "path": "provenance/experiments/trail_recursive_tools.py",
+      "size_bytes": 8787,
+      "sha256": "5b37e1d5e1fab68a9a905f51a4e187b3898d2119591ae54d5ad89ddadaa1911c"
+    },
+    {
+      "path": "provenance/pip_freeze.txt",
+      "size_bytes": 1598,
+      "sha256": "4522e278216becca605afb013ea2f576aeaf7ffcd3d9ef200afbfb255c15ce0e"
+    },
+    {
+      "path": "provenance/run_exp36_v3_evalmode_probe.sh",
+      "size_bytes": 178,
+      "sha256": "d346ecc446e0fec31248642c219a8c1985a717b4df9e1a2d0fac5ded8fa84223"
+    },
+    {
+      "path": "provenance/run_exp36_v3_full.sh",
+      "size_bytes": 307,
+      "sha256": "44b0f7004e5eada266a708daf5e6b697bdba83dbde17e30e4072eacb079eacf1"
+    },
+    {
+      "path": "provenance/run_exp36_v3_preflight.sh",
+      "size_bytes": 279,
+      "sha256": "b47e6603284f69613b592815c0c0f4e0a3da6dc25dce6fcd28e06142e2c4f978"
+    },
+    {
+      "path": "provenance/src/models/trail_rul.py",
+      "size_bytes": 11580,
+      "sha256": "00af17e564a93244d693fe0e26520335426979f2097e3e8183970d03e21589b0"
+    },
+    {
+      "path": "provenance/src/training/early_stopping.py",
+      "size_bytes": 489,
+      "sha256": "30a9683dbb91083b922967c09d3002a5b40397a4f06380530076cdf300e6ee9b"
+    },
+    {
+      "path": "provenance/src/training/trainer.py",
+      "size_bytes": 5152,
+      "sha256": "5af837cb02962aa0b5e997799e7f628ca3e7a7f8444a49ecb97cd88fd5fc6ce6"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_AUDIT.json",
+      "size_bytes": 1128,
+      "sha256": "eae92d53e9fde561bb09882f6cfcab1710772ebea19587243f468674295b672a"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_CELL_CUTOFF_UNITS.csv",
+      "size_bytes": 8598,
+      "sha256": "2b20044b6e1e7cdc1cf6f8f5ae9eb81a980816155ddfc3c508404454b7574a43"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_CHECKPOINT_PROVENANCE.csv",
+      "size_bytes": 37095,
+      "sha256": "756ee53e2c8dfd71051f994d9766c3f8284ed33c2a4985283b70882b83728507"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_DOMAIN_SUMMARY.csv",
+      "size_bytes": 656,
+      "sha256": "261753c91c9dc7ac3edeeba83e2203762d19b3f4b27079b5fdad087661990601"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_FUTURE_TRAJECTORIES.csv",
+      "size_bytes": 24046272,
+      "sha256": "1e385cb22151aa3631b24d6fa2002fffd97d9df3db3c7462ec320b951c688e73"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_PHYSICAL_CELLS.csv",
+      "size_bytes": 4074,
+      "sha256": "5c97d75137953259d32a2b585b25896fe5d45786206b1945991a2d2ef43db4e2"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_PREFIX_REPLAY_METRICS.csv",
+      "size_bytes": 276827,
+      "sha256": "14f709b485a0d340467ce65eec2ebef01f7dfb674bbed2e8de30cb5bc76ea41b"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_PREFIX_REPLAY_TRAJECTORIES.csv",
+      "size_bytes": 13721913,
+      "sha256": "57d27bc7182723de3e69d5e61b74a9ec3d60c9a17227fe6d995cd31818c3c073"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_PREFLIGHT.csv",
+      "size_bytes": 24819,
+      "sha256": "217aa7bfbfbe233f438d0029ca0ad1e9f995ef0cdee6c1cebbed166944419244"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_REPRODUCTION_AUDIT.csv",
+      "size_bytes": 91136,
+      "sha256": "683600d94dd62cd5b1583d499c4ec4fabe7786a84699ddf00d0c2ffe12959c42"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_SEED_DECISIONS.csv",
+      "size_bytes": 94185,
+      "sha256": "bc61bb330c95c75af0821bee44afd7d38452a1eebb401852459398c473efc91a"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_SHA256SUMS.txt",
+      "size_bytes": 1248,
+      "sha256": "aad7b494d8a134e074649a41e999e9d2633ba3f823fcecfb85248baa956f66e4"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_STRUCTURAL_EXCLUSIONS.csv",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "results/trail_dgr_prefix_replay_v3/EXP36_V3_SUMMARY.json",
+      "size_bytes": 1777,
+      "sha256": "934c983692882080a312c17bc5580c75ca43044c01eb551db8d79e1284d3e852"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "status": "STOP_BEFORE_TRAIL_DGR_TRAINING",
+  "script": "exp_36_trail_dgr_prefix_replay_v3.py",
+  "script_sha256": "67e6b408414be9391bd7222b01491df09858e880e17e2428d181eb0d45346894",
+  "NASA_config": "config_trail.yaml",
+  "NASA_config_sha256": "918ea30fee8b93f0d5476ca0d49cdc9caa048f60d18d7cf1d1924f4c21e8d5fc",
+  "cross_protocol": "config_trail_crossdomain.yaml",
+  "cross_protocol_sha256": "886289a28ba15b092728212df9c916a03c64b70c6bd1b0d24365fc58867b7d0a",
+  "NASA_reference": "results/trail_lite_recursive/trail_lite_recursive_seed_cell_cutoff.csv",
+  "NASA_reference_sha256": "800f16e800714db3893a6713b39ad65236e74b22d16da5cacfb9ffe565a9e419",
+  "cross_reference": "results/trail_lite_crossdomain/crossdomain_recursive_seed_cell_cutoff.csv",
+  "cross_reference_sha256": "a0516c8a696e2f604a1f6cc3707ea2b07384ecf886bdadbea56a2287820c476e",
+  "n_seed_decisions": 192,
+  "n_cell_cutoff_units": 64,
+  "n_physical_cells": 23,
+  "physical_inference_unit": "cell",
+  "future_truth_used_for_selection": false,
+  "observed_prefix_truth_used_for_selection": true,
+  "HNEI_read": false,
+  "SNL_read": false,
+  "HUST_read": false
+}

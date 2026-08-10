@@ -1,0 +1,43 @@
+{
+  "experiment": "EXP36-v3",
+  "role": "SOURCE_ONLY_PREFIX_REPLAY_FEASIBILITY",
+  "status": "STOP_BEFORE_TRAIL_DGR_TRAINING",
+  "scope": "NASA uses EXP27 historical protocol; CALCE_CS2 and XJTU_B2 use EXP28 historical protocol. This is not true LODO.",
+  "historical_reproduction_max_abs_delta_Ah": 9.8879238130678e-17,
+  "equal_domain_cell_mean_SOH_RMSE": {
+    "Local": 0.18687581030935504,
+    "Always_Lite": 0.08179088890656247,
+    "Always_Full": 0.09060973286170425,
+    "Prefix_Replay_v3": 0.15974971989835612
+  },
+  "Prefix_Replay_relative_change_vs_Always_Lite_percent": 95.31481077416025,
+  "domain_wins_vs_Always_Lite": 0,
+  "worst_domain": {
+    "TRAIL_DGR_Replay_v3": 0.33438983986006304,
+    "Always_Lite": 0.18601694106454233
+  },
+  "FCAR": {
+    "TRAIL_DGR_Replay_v3": 0.06521739130434781,
+    "Always_Lite": 0.17391304347826084
+  },
+  "local_fallback_rate": 0.44444444444444453,
+  "bootstrap_delta_DGR_minus_Lite": {
+    "observed": 0.07795883099179365,
+    "ci95_low": 0.012440443187737708,
+    "ci95_high": 0.14338727088144798,
+    "n_boot": 5000,
+    "unit": "physical_cell",
+    "stratified_by_domain": true
+  },
+  "physical_cells_total": 23,
+  "physical_cells_prefix_replay_better_than_lite": 3,
+  "physical_cells_prefix_replay_not_better_than_lite": 20,
+  "pass_items": {
+    "equal_domain_cell_SOH_RMSE_better_than_Always_Lite": false,
+    "at_least_2_of_3_domains_better_than_Always_Lite": false,
+    "worst_domain_better_than_Always_Lite": false,
+    "FCAR_not_worse_than_Always_Lite": true,
+    "local_fallback_rate_below_0p90": true
+  },
+  "claim_guardrail": "Prefix replay reduced harmful neural adoption (lower FCAR) but did not provide reliable future recursive advantage; it failed the preregistered feasibility gate and was not advanced to TRAIL-DG-R training."
+}

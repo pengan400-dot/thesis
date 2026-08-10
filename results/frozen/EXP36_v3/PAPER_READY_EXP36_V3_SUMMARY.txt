@@ -1,0 +1,27 @@
+EXP36-v3 FINAL PAPER-READY SUMMARY
+========================================================================
+Status: STOP_BEFORE_TRAIL_DGR_TRAINING
+Role: SOURCE_ONLY_PREFIX_REPLAY_FEASIBILITY
+Historical reproduction max abs delta: 9.887923813068e-17 Ah
+
+Equal-domain physical-cell mean SOH RMSE
+  Local                : 0.1868758103
+  Always-Lite          : 0.0817908889
+  Always-Full          : 0.0906097329
+  Prefix-Replay v3     : 0.1597497199
+  Replay vs Lite change: +95.31%
+
+Domain wins vs Always-Lite: 0/3
+Physical cells where Replay < Lite: 3/23
+FCAR Replay vs Lite: 0.065217 vs 0.173913
+Local fallback rate: 0.444444
+Bootstrap DGR-Lite: +0.0779588310 [+0.0124404432, +0.1433872709]
+
+Domain summary
+  CALCE_CS2  Local=0.398654 Lite=0.186017 Full=0.202324 Replay=0.334390 FCAR=0.166667
+  NASA       Local=0.124164 Lite=0.031192 Full=0.041607 Replay=0.114471 FCAR=0.000000
+  XJTU_B2    Local=0.037810 Lite=0.028164 Full=0.027898 Replay=0.030388 FCAR=0.055556
+
+Frozen interpretation
+  Prefix replay reduced harmful neural adoption but did not predict sustained long-horizon neural advantage reliably.
+  The preregistered feasibility gate therefore stopped subsequent TRAIL-DG-R training.
